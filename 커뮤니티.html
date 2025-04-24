@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>커뮤니티 페이지</title>
+  <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/community.css">
+</head>
+<body>
+  <!-- 헤더 -->
+  <nav class="navbar bg-white px-3 py-2 d-flex justify-content-between align-items-center border-bottom">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Logo" style="width:32px;height:32px; border-radius:50%;">
+    <div class="d-flex align-items-center gap-3">
+      <i class="bi bi-search"></i>
+      <button class="btn btn-link">로그인</button>
+      <i class="bi bi-list"></i>
+    </div>
+  </nav>
+
+  <!-- 커뮤니티 메뉴 -->
+  <div class="container mt-3">
+    <div class="d-flex justify-content-around">
+      <button class="btn btn-outline-secondary btn-sm">뉴스</button>
+      <button class="btn btn-outline-secondary btn-sm">종목</button>
+      <button class="btn btn-outline-secondary btn-sm">예측</button>
+      <button class="btn btn-outline-secondary btn-sm">커뮤니티</button>
+      <button class="btn btn-outline-secondary btn-sm">공지</button>
+    </div>
+  </div>
+
+  <!-- 예측 정보 티커 -->
+  <div class="bg-light text-center py-2 mt-3 fw-semibold border-top border-bottom">
+    예측 정보 티커 영역 예시: 비트코인 1억 돌파 예측 중!
+  </div>
+
+  <!-- 게시판 리스트 -->
+  <div class="container mt-3">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2">
+          <img src="https://via.placeholder.com/32" class="rounded-circle me-2">
+          <div>
+            <div class="fw-bold">코알라3B2</div>
+            <small class="text-muted">코인한마디 · 5분 전</small>
+          </div>
+        </div>
+        <h6 class="card-title">LOOM, ARK, HIFI</h6>
+        <p class="card-text small">비트는 현재 1.21억입니다. 오늘은 2자리 상승률을 가진 코인이 2개 있습니다...</p>
+        <div class="d-flex justify-content-start gap-4">
+          <span class="text-primary small">👍 3</span>
+          <span class="text-secondary small">💬 0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-2">
+          <img src="https://via.placeholder.com/32" class="rounded-circle me-2">
+          <div>
+            <div class="fw-bold">코인불장기원</div>
+            <small class="text-muted">잡담 · 10분 전</small>
+          </div>
+        </div>
+        <h6 class="card-title">오늘 코인 시장 분위기 어떰?</h6>
+        <p class="card-text small">다들 오늘 장 어때요? 흐름이 좋아 보이긴 하는데...</p>
+        <div class="d-flex justify-content-start gap-4">
+          <span class="text-primary small">👍 7</span>
+          <span class="text-secondary small">💬 2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 네비게이션 -->
+  <nav class="navbar fixed-bottom bg-white border-top d-flex justify-content-around">
+    <a href="#" class="text-center text-dark">
+      <div>🏠</div>
+      <small>홈</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>📊</div>
+      <small>차트</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>📈</div>
+      <small>예측정보</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>👥</div>
+      <small>커뮤니티</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>👤</div>
+      <small>마이페이지</small>
+    </a>
+  </nav>
+
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/community.js"></script>
+</body>
+</html>

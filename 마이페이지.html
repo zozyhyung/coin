@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마이페이지</title>
+  <link rel="stylesheet" href="./css/dashboard.css">
+  <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+  <!-- 상단 헤더 -->
+  <nav class="navbar bg-white px-3 py-2 border-bottom d-flex align-items-center">
+    <a href="#" class="me-3 text-dark"><i class="bi bi-arrow-left"></i></a>
+    <h6 class="m-0 fw-bold">마이페이지</h6>
+  </nav>
+
+  <!-- 회원 정보 영역 -->
+  <div class="bg-white p-3 d-flex justify-content-between align-items-center border-bottom">
+    <div class="d-flex align-items-center gap-3">
+      <img src="./img/profile.jpg" alt="profile" class="rounded-circle" style="width: 48px; height: 48px;">
+      <div>
+        <div class="fw-bold">닉네임</div>
+        <small class="text-muted">인사 메시지를 입력하세요</small>
+      </div>
+    </div>
+    <a href="#" class="btn btn-outline-secondary btn-sm">회원정보 수정</a>
+  </div>
+
+  <!-- 예측 항목 시세 -->
+  <div class="container my-3">
+    <h6 class="fw-bold mb-2">예측 항목 시세</h6>
+    <ul class="list-group">
+      <li class="list-group-item">삼성전자 82,000원 (+1.20%)</li>
+      <li class="list-group-item">비트코인 125,000,000원 (+0.80%)</li>
+    </ul>
+  </div>
+
+  <!-- 관심 항목 -->
+  <div class="container my-3">
+    <h6 class="fw-bold mb-2">관심 항목</h6>
+    <ul class="list-group">
+      <li class="list-group-item">이더리움</li>
+      <li class="list-group-item">애플</li>
+    </ul>
+  </div>
+
+  <!-- 내가 쓴 글 -->
+  <div class="container my-3">
+    <h6 class="fw-bold mb-2">내가 쓴 글</h6>
+    <ul class="list-group">
+      <li class="list-group-item">LOOM, ARK, HIFI 상승 예상 분석</li>
+      <li class="list-group-item">테더 스테이블 코인 동향</li>
+    </ul>
+  </div>
+
+  <!-- 하단 네비게이션 -->
+  <nav class="navbar fixed-bottom bg-white border-top d-flex justify-content-around">
+    <a href="#" class="text-center text-dark">
+      <div>🏠</div>
+      <small>홈</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>📊</div>
+      <small>차트</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>📈</div>
+      <small>예측정보</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>👥</div>
+      <small>커뮤니티</small>
+    </a>
+    <a href="#" class="text-center text-primary fw-bold">
+      <div>👤</div>
+      <small>마이페이지</small>
+    </a>
+  </nav>
+
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/script.js"></script>
+</body>
+</html>

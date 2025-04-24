@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시글 작성</title>
+  <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8f9fa; }
+    .form-control::placeholder { color: #adb5bd; }
+    .btn-rounded { border-radius: 16px; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <nav class="navbar bg-white px-3 py-2 border-bottom">
+    <button class="btn btn-outline-secondary btn-sm"><-</button>
+    <span class="ms-2 fw-bold"> 게시글 작성</span>
+  </nav>
+
+  <!-- Form Area -->
+  <div class="container py-4">
+    <input type="text" class="form-control mb-3" placeholder="제목">
+    <input type="text" class="form-control mb-3" placeholder="태그">
+    <textarea class="form-control mb-3" rows="8" placeholder="텍스트 엔드링"></textarea>
+
+    <div class="d-flex gap-2 mb-3">
+      <button class="btn btn-outline-dark w-50"> 메크로방지 </button>
+      <input type="text" class="form-control w-50" placeholder="메크로 방지 입력">
+    </div>
+
+    <div class="d-flex gap-3">
+      <button class="btn btn-secondary flex-fill btn-rounded"> 취소 </button>
+      <button class="btn btn-primary flex-fill btn-rounded"> 등록 </button>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="navbar fixed-bottom bg-white border-top d-flex justify-content-around">
+    <a href="#" class="text-center text-dark">
+      <div>🏠</div>
+      <small>홈</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>📊</div>
+      <small>차트</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>📈</div>
+      <small>예측정보</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>👥</div>
+      <small>컨테스트</small>
+    </a>
+    <a href="#" class="text-center text-dark">
+      <div>👤</div>
+      <small>마이페이지</small>
+    </a>
+  </nav>
+
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

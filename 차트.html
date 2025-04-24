@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>차트 페이지</title>
+  <link rel="stylesheet" href="./css/dashboard.css">
+  <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- 헤더 -->
+<nav class="navbar bg-white px-3 py-2 d-flex justify-content-between align-items-center border-bottom">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Logo" style="width:32px;height:32px; border-radius:50%;">
+  <div class="d-flex align-items-center gap-3">
+    <i class="bi bi-search"></i>
+    <button class="btn btn-link">로그인</button>
+    <i class="bi bi-list"></i>
+  </div>
+</nav>
+
+<!-- 국가 증시 요약 -->
+<div class="container my-3">
+  <div class="row g-2">
+    <div class="col-6">
+      <div class="bg-light rounded-3 p-3 text-center">
+        <strong>국가 증시 A</strong><br>
+        2,541.40<br>
+        <span class="text-success">+34.76 (1.40%)</span>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="bg-light rounded-3 p-3 text-center">
+        <strong>국가 증시 B</strong><br>
+        3,412.56<br>
+        <span class="text-danger">-21.31 (-0.62%)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 실시간 뉴스 -->
+<div class="container my-3">
+  <h6 class="fw-bold mb-2">실시간 뉴스</h6>
+  <ul class="list-group">
+    <li class="list-group-item">1. 미국 고용지표 발표 예정</li>
+    <li class="list-group-item">2. 연준 기준금리 발표 대기</li>
+    <li class="list-group-item">3. 비트코인 상승률 2% 돌파</li>
+  </ul>
+</div>
+
+<!-- 시세 그래프 영역 (이미지 대체) -->
+<div class="container my-3">
+  <h6 class="fw-bold mb-2">시세 그래프</h6>
+  <div class="bg-light rounded-3 p-3 text-center">
+    <img src="./img/sample_chart.png" alt="차트" class="img-fluid rounded">
+  </div>
+</div>
+
+<!-- 급등락 종목 리스트 -->
+<div class="container my-3">
+  <h6 class="fw-bold mb-2">급등락 종목 Top 5</h6>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between">
+      <span>삼성전자</span><span class="text-success">+4.52%</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+      <span>카카오</span><span class="text-danger">-3.21%</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+      <span>SK하이닉스</span><span class="text-success">+2.80%</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+      <span>LG전자</span><span class="text-danger">-1.90%</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+      <span>네이버</span><span class="text-success">+1.75%</span>
+    </li>
+  </ul>
+</div>
+
+<!-- 하단 네비게이션 -->
+<nav class="navbar fixed-bottom bg-white border-top d-flex justify-content-around">
+  <a href="#" class="text-center text-dark">
+    <div>🏠</div>
+    <small>홈</small>
+  </a>
+  <a href="#" class="text-center text-dark">
+    <div>📊</div>
+    <small>차트</small>
+  </a>
+  <a href="#" class="text-center text-dark">
+    <div>📈</div>
+    <small>예측정보</small>
+  </a>
+  <a href="#" class="text-center text-dark">
+    <div>👥</div>
+    <small>커뮤니티</small>
+  </a>
+  <a href="#" class="text-center text-dark">
+    <div>👤</div>
+    <small>마이페이지</small>
+  </a>
+</nav>
+
+<script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./js/chart.js"></script>
+</body>
+</html>
