@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인기 뉴스</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-sm font-sans">
+
+  <!-- 상단 상태바 -->
+  <div class="flex justify-between items-center px-4 py-2 text-xs bg-white border-b">
+    <span>11:02 🔇</span>
+    <div class="flex items-center space-x-1">
+      <span>5G</span>
+      <div class="w-4 h-2.5 bg-black rounded-full"></div>
+      <span>90%</span>
+    </div>
+  </div>
+
+  <!-- 상단 탭 -->
+  <div class="flex justify-center mt-4">
+    <div class="flex bg-gray-100 rounded-full p-1 space-x-2">
+      <button class="bg-white text-black px-4 py-1 rounded-full font-semibold">커뮤니티</button>
+      <button class="text-gray-500 px-4 py-1 rounded-full">뉴스</button>
+    </div>
+  </div>
+
+  <!-- 상단 헤드라인 -->
+  <div class="mt-4 px-4">
+    <div class="bg-gray-100 text-xs p-2 rounded-md">
+      <span class="text-blue-600 font-bold">⚡</span>
+      <span class="font-semibold">"65세 정년제 도입, 청년 고용보다 중장년 고용에 부담"</span>
+      <p class="text-gray-500 mt-1">노동 3대 학회 공동 정책토론회…"재고용 방식 정년연장·퇴직 후 재고용 등 다변화해야"</p>
+    </div>
+  </div>
+
+  <!-- 탭 메뉴 -->
+  <div class="flex justify-around mt-6 text-sm font-semibold border-b pb-2">
+    <span class="text-gray-400">실시간</span>
+    <span class="text-black border-b-2 border-black">인기</span>
+    <span class="text-gray-400">거래소 공시</span>
+  </div>
+
+  <!-- 인기 필터 버튼 -->
+  <div class="flex space-x-2 mt-4 px-4">
+    <button class="bg-black text-white px-3 py-1 rounded-full text-xs">오늘</button>
+    <button class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">일주일</button>
+    <button class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">한달</button>
+  </div>
+
+  <!-- 뉴스 리스트 -->
+  <div class="mt-4 px-4 space-y-6">
+    <!-- 뉴스 아이템 1 -->
+    <div class="flex justify-between items-start">
+      <div class="flex-1">
+        <div class="text-red-600 text-xs font-bold">BTC -0.20% ETH -0.29%</div>
+        <div class="font-semibold mt-1">비탈릭이 밝힌 양자컴퓨터도 막아낼 이더리움의 미래</div>
+        <div class="text-gray-400 text-xs mt-1">코인리더스 · 13시간 전</div>
+      </div>
+      <img src="https://via.placeholder.com/60" alt="뉴스 이미지" class="w-14 h-14 rounded-md ml-2 object-cover">
+    </div>
+
+    <!-- 뉴스 아이템 2 -->
+    <div class="flex justify-between items-start">
+      <div class="flex-1">
+        <div class="text-red-600 text-xs font-bold">BTC -0.20% JOE -0.51%</div>
+        <div class="font-semibold mt-1">비트코인 준비금 도입, 일본도 나설까…샘슨 모우 "국가 전략 전환 시급"</div>
+        <div class="text-gray-400 text-xs mt-1">코인리더스 · 11시간 전</div>
+      </div>
+      <img src="https://via.placeholder.com/60" alt="뉴스 이미지" class="w-14 h-14 rounded-md ml-2 object-cover">
+    </div>
+
+    <!-- 뉴스 아이템 3 -->
+    <div class="flex justify-between items-start">
+      <div class="flex-1">
+        <div class="text-red-600 text-xs font-bold">BTC -0.20% MLK -0.07%</div>
+        <div class="font-semibold mt-1">아담 백 "비트코인, 올해 최소 50만 달러에서 최대 100만 달러 간다"</div>
+        <div class="text-gray-400 text-xs mt-1">코인리더스 · 13시간 전</div>
+      </div>
+      <img src="https://via.placeholder.com/60" alt="뉴스 이미지" class="w-14 h-14 rounded-md ml-2 object-cover">
+    </div>
+  </div>
+
+  <!-- 하단 네비게이션 -->
+  <div class="fixed bottom-0 w-full bg-white border-t py-2 flex justify-around text-xs">
+    <div class="text-center text-gray-500">🏠<br>홈</div>
+    <div class="text-center text-blue-600 font-semibold">💬<br>커뮤니티</div>
+    <div class="text-center text-gray-500">📈<br>투자정보</div>
+    <div class="text-center text-gray-500">🎥<br>라이브</div>
+    <div class="text-center text-gray-500">👤<br>마이페이지</div>
+  </div>
+
+</body>
+</html>
