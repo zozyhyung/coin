@@ -1,3 +1,57 @@
+// header.html 가져오기
+fetch('./header.html')
+  .then(response => response.text())
+  .then(data => {
+    const headerContainer = document.getElementById('header-container');
+    if (headerContainer) {
+      headerContainer.innerHTML = data;
+    }
+  });
+
+// footer.html 불러오기
+fetch('./footer.html')
+  .then(response => response.text())
+  .then(data => {
+    const footerContainer = document.getElementById('footer-container');
+    if (footerContainer) {
+      footerContainer.innerHTML = data;
+
+      // footer 불러온 다음에 클릭 이벤트 연결해야 함
+      const footerItems = footerContainer.querySelectorAll('.footer-item');
+      footerItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          footerItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+        });
+      });
+    }
+  });
+
+// 페이지가 로딩되자마자 초기 필터값 표시
+window.addEventListener('DOMContentLoaded', () => {
+  toggleMainTab('popular');
+});
+
+// 스크롤 최상단 이동 버튼 기능
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+// 스크롤 내릴 때 버튼 보이기
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    scrollTopBtn.style.display = 'block';
+  } else {
+    scrollTopBtn.style.display = 'none';
+  }
+});
+
+// 버튼 클릭하면 맨 위로 부드럽게 이동
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
 const banners = [
     {
       link: "https://example.com/banner1",
@@ -376,8 +430,45 @@ document.getElementById('btn-main-curation').addEventListener('click', () => {
   toggleMainTab('curation');
 });
 
-// 🔥 페이지가 로딩되자마자 초기 필터값 표시
+// 페이지가 로딩되자마자 초기 필터값 표시
 window.addEventListener('DOMContentLoaded', () => {
   toggleMainTab('popular');
 });
   /* NOW Headlines 섹션 밑 인기 큐레이션 */
+
+  /*Investing Insight 영역*/
+  const coinInfoData = [
+    { title: "비트코인과 수익", commentCount: 2, views: 63, time: "1시간 전", img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?crop=entropy&cs=tinysrgb&fit=crop&w=100&h=100", link: "coin1.html" },
+    { title: "비트코인과 수익", commentCount: 0, views: 47, time: "1시간 전", img: "", link: "coin2.html" },
+    { title: "비트코인이 양지에서 더 빛나는 이유?", commentCount: 4, views: 92, time: "4시간 전", img: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?crop=entropy&cs=tinysrgb&fit=crop&w=100&h=100", link: "coin3.html" },
+    { title: "[기대] 트론(TRX) 저스틴 선, 트럼프표", commentCount: 5, views: 117, time: "4시간 전", img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?crop=entropy&cs=tinysrgb&fit=crop&w=100&h=100", link: "coin4.html" },
+    { title: "트럼프코인 대단하군요", commentCount: 13, views: 128, time: "5시간 전", img: "https://images.unsplash.com/photo-1593642634367-d91a135587b5?crop=entropy&cs=tinysrgb&fit=crop&w=100&h=100", link: "coin5.html" }
+  ];
+  
+  function renderCoinInfoList() {
+    const list = document.getElementById('coin-info-list');
+    list.innerHTML = '';
+  
+    coinInfoData.forEach(item => {
+      const li = document.createElement('li');
+      li.className = "mb-4 py-2";
+  
+      li.innerHTML = `
+        <a href="${item.link || '#'}" class="d-flex justify-content-between align-items-center w-100 text-decoration-none text-dark">
+          <div class="flex-grow-1" style="min-width:0;">
+            <div class="fw-bold text-truncate" style="max-width: calc(100% - 60px); font-size: 14px;">
+              ${item.title} ${item.commentCount !== undefined ? `<span class="text-primary">(${item.commentCount})</span>` : ''}
+            </div>
+            <div class="text-muted small mt-1">조회 ${item.views} · ${item.time}</div>
+          </div>
+          ${item.img ? `<img src="${item.img}" alt="썸네일" class="ms-2 rounded-3 flex-shrink-0" style="width: 40px; height: 40px; object-fit: cover;">` : ''}
+        </a>
+      `;
+  
+      list.appendChild(li);
+    });
+  }
+  
+  // 페이지 로드될 때 호출
+  renderCoinInfoList();
+    /*Investing Insight 영역 끝*/

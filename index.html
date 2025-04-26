@@ -18,29 +18,7 @@
   <!-- 여기서부터 화면 구성 시작 -->
   <div id="app">
     <!-- 상단바 (헤더) -->
-    <nav class="navbar navbar-light bg-white px-3 py-2 d-flex justify-content-between align-items-center"
-     style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 60px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);">
-        <div class="d-flex align-items-center gap-2">
-          <!-- 오픈 소스 무료 로고 -->
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="로고" style="width:32px;height:32px; border-radius:50%;">
-        </div>
-      
-        <div class="d-flex align-items-center gap-3">
-          <i class="bi bi-search" style="font-size: 24px; font-weight: bold; color: #1b1e26;"></i>
-          <button type="button" class="btn p-0 m-0" style="background: none; border: none; font-size: 16px; font-weight: 700; color: #1b1e26;">
-            로그인
-          </button>
-          <div class="dropdown">
-            <button class="btn lang-btn dropdown-toggle" type="button" id="langMenu" data-bs-toggle="dropdown" aria-expanded="false">
-              KR
-            </button>
-            <ul class="dropdown-menu dropdown-lang dropdown-menu-end" aria-labelledby="langMenu">
-              <li><a class="dropdown-item" href="#">KR</a></li>
-              <li><a class="dropdown-item" href="#">EN</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+    <div id="header-container"></div>
 
       <!-- 김치 프리미엄 / 공포탐욕지수 -->
       <div class="d-flex justify-content-around align-items-center py-2 bg-white">
@@ -109,6 +87,9 @@
     </div>
   </div>
 
+  <!-- 여기 분리선 추가!! -->
+<hr style="border-top: 15px solid #adb5bd; margin-top: 12px; margin-bottom: 12px;" />
+
 <!-- NOW Headlines 섹션 -->
 <div class="bg-white px-3 py-3 my-3 rounded-3">
   <h5 class="fw-bold mb-1">NOW Headlines</h5>
@@ -142,7 +123,7 @@
   </ul>
 </div>
 
-<!-- 여기 분리선 추가!! -->
+<!-- 분리선 -->
 <hr class="my-1" style="border-color: #dee2e6; border-top: 1px solid #adb5bd;" />
 
 <!-- 인기/큐레이션 섹션 -->
@@ -173,11 +154,44 @@
   </ul>
 </div>
 
-    <!-- 카드 리스트 -->
+<!-- 분리선 -->
+<hr style="border-top: 15px solid #adb5bd; margin-top: 12px; margin-bottom: 12px;" />
 
-    <!-- 공지사항 -->
+<!-- Investing Insight 영역 -->
+<div class="bg-white px-3 py-3 my-3 rounded-3">
+  <h5 class="fw-bold mb-2">Investing Insight</h5>
+  <p class="text-muted small mb-3">심도있는 코인 분석과 전략적 투자 인사이트</p>
 
-    <!-- 하단 탭바 (네비게이션) -->
+  <!-- 코인정보 리스트 -->
+  <div class="border-top pt-3">
+    <h6 class="fw-bold" style="font-weight: 800; font-size: 16px; margin-bottom: 16px;">코인정보</h6>
+    <ul id="coin-info-list" class="list-unstyled mb-0">
+      <!-- JavaScript로 채워짐 -->
+    </ul>
+  </div>
+</div>
+
+<!-- 카드 리스트 -->
+
+<!-- 공지사항 -->
+
+<!-- 하단 탭바 (네비게이션) -->
+<div id="footer-container"></div>
+
+<!-- 스크롤 최상단 이동 버튼 -->
+<button id="scrollTopBtn" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="
+  position: fixed;
+  bottom: 90px;
+  right: 15px;
+  display: none;
+  z-index: 1000;
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+">
+  <i class="bi bi-chevron-up" style="font-size: 20px;"></i>
+</button>
   </div>
 
   <!-- Bootstrap JS -->
