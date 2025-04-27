@@ -1,5 +1,5 @@
 // header.html 가져오기
-fetch('./header.html')
+fetch('./layout/header.html')
   .then(response => response.text())
   .then(data => {
     const headerContainer = document.getElementById('header-container');
@@ -9,7 +9,7 @@ fetch('./header.html')
   });
 
 // footer.html 불러오기
-fetch('./footer.html')
+fetch('./layout/footer.html')
   .then(response => response.text())
   .then(data => {
     const footerContainer = document.getElementById('footer-container');
@@ -472,3 +472,88 @@ window.addEventListener('DOMContentLoaded', () => {
   // 페이지 로드될 때 호출
   renderCoinInfoList();
     /*Investing Insight 영역 끝*/
+
+// 공지 데이터
+const noticeListData = [
+  { title: "[공지] CBK 스테이킹 서비스 종료 안내", link: "./notice1.html" },
+  { title: "[EVENT] 🏆 CBK 에어드랍 이벤트! 코비가 되어 꿀캐기", link: "./notice2.html" },
+  { title: "[공지] (4/14 수정) 코박블랙 유지 자격 오류 발생 및 복구", link: "./notice3.html" },
+  { title: "[EVENT] CBK 트위터 팔로워를 위한 CBK 에어드랍!", link: "./notice4.html" },
+  { title: "[공지] 회원가입, 약관 동의, 이메일 인증 절차 도입을 안내합니다", link: "./notice5.html" }
+];
+
+function renderNoticeList() {
+  const list = document.getElementById('notice-list');
+  list.innerHTML = '';
+
+  noticeListData.forEach(item => {
+    const li = document.createElement('li');
+    li.className = 'mb-2';
+    li.innerHTML = `
+      <a href="${item.link}" class="text-decoration-none text-dark d-block text-truncate" style="font-size: 14px;">
+        ${item.title}
+      </a>
+    `;
+    list.appendChild(li);
+  });
+}
+
+renderNoticeList();
+
+// 거래소 리스트 채우는 데이터
+const exchangeData = [
+  { name: "Upbit", link: "https://upbit.com" },
+  { name: "Bithumb", link: "https://www.bithumb.com" },
+  { name: "HTX", link: "https://www.htx.com" },
+  { name: "Coinstore", link: "https://www.coinstore.com" },
+  { name: "XT.COM", link: "https://www.xt.com" },
+  { name: "Bybit", link: "https://www.bybit.com" },
+  { name: "Binance", link: "https://www.binance.com" },
+  { name: "Bitget", link: "https://www.bitget.com" }
+];
+
+// 더미이미지 링크 하나 공통으로
+const sampleExchangeLogo = "https://dummyimage.com/100x100/cccccc/000000.png&text=EX";
+
+// 거래소 렌더링 함수
+function renderExchangeList() {
+  const container = document.getElementById('exchange-list');
+  if (!container) {
+    console.error('exchange-list 요소를 찾을 수 없습니다.');
+    return;
+  }
+  container.innerHTML = '';
+
+  exchangeData.forEach(exchange => {
+    const a = document.createElement('a');
+    a.href = exchange.link;
+    a.target = '_blank';
+    a.className = 'exchange-item';
+
+    a.innerHTML = `
+      <img src="${sampleExchangeLogo}" alt="${exchange.name}">
+      <span>${exchange.name}</span>
+    `;
+    container.appendChild(a);
+  });
+
+  // 무한처럼 보이게 복제
+  exchangeData.forEach(exchange => {
+    const a = document.createElement('a');
+    a.href = exchange.link;
+    a.target = '_blank';
+    a.className = 'exchange-item';
+
+    a.innerHTML = `
+      <img src="${sampleExchangeLogo}" alt="${exchange.name}">
+      <span>${exchange.name}</span>
+    `;
+    container.appendChild(a);
+  });
+}
+
+// 페이지 로딩될 때 거래소 리스트도 같이 로딩
+window.addEventListener('DOMContentLoaded', () => {
+  renderExchangeList();
+});
+/* 거래소 리스트 로직 끝 */

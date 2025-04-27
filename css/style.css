@@ -3,6 +3,7 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
     padding: 0;
+    padding-bottom: 80px;
   }
   
   #app {
@@ -10,6 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #ffffff; /* 앱 전체도 흰색 */
+    box-sizing: border-box;
   }
   
   .bottom-nav {
@@ -223,3 +225,60 @@ body {
     text-overflow: ellipsis;
   }
     /*반응형 이므로 화면 사이즈 줄어들면 리스트 띄어쓰기 안하고 ..으로 표시 로직 끝*/
+
+/* 거래소 바로가기 style 시작 */
+/* 거래소 바로가기 박스 스타일 */
+.exchange-wrapper {
+  background: #fff;
+  padding: 16px;
+  margin: 0 12px 16px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 16px;
+}
+
+/* 거래소 리스트 */
+.exchange-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-top: 8px;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* 거래소 섹션 타이틀 (거래소 바로가기) */
+.exchange-wrapper h5 {
+  font-weight: 600; /* 700 → 600으로 줄이기 (덜 진하게) */
+  font-size: 16px; /* 크기 작게 */
+  margin-bottom: 16px;
+}
+
+/* Chrome 스크롤 숨기기 */
+.exchange-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* 거래소 개별 항목 */
+.exchange-item {
+  flex: 0 0 auto;
+  text-align: center;
+  width: 60px;
+  text-decoration: none; /* 밑줄 없애기 */
+}
+
+/* 거래소 로고 이미지 */
+.exchange-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%; /* 동그랗게 */
+  margin-bottom: 6px;
+}
+
+/* 거래소 이름 */
+.exchange-item span {
+  font-size: 12px;
+  color: #212529;
+  text-decoration: none; /* 이름에도 밑줄 없애기 */
+  display: block; /* 글자도 블록처럼 위아래 정렬 */
+}
+/* 거래소 바로가기 style 끝 */
