@@ -552,8 +552,126 @@ function renderExchangeList() {
   });
 }
 
+// 거래소 자동 스크롤
+const exchangeList = document.querySelector('.exchange-list');
+
+let scrollAmount = 0;
+let scrollStep = 73; // 한 번에 이동할 거리 (px)
+let scrollDelay = 2000; // 1초 간격 (ms)
+
+function autoScrollExchange() {
+  if (exchangeList.scrollWidth - exchangeList.clientWidth === 0) return; // 스크롤 필요 없으면 return
+
+  scrollAmount += scrollStep;
+  
+  if (scrollAmount >= exchangeList.scrollWidth - exchangeList.clientWidth) {
+    scrollAmount = 0; // 끝까지 가면 다시 처음으로
+  }
+  
+  exchangeList.scrollTo({
+    left: scrollAmount,
+    behavior: 'smooth'
+  });
+}
+
+setInterval(autoScrollExchange, scrollDelay);
+
 // 페이지 로딩될 때 거래소 리스트도 같이 로딩
 window.addEventListener('DOMContentLoaded', () => {
   renderExchangeList();
 });
 /* 거래소 리스트 로직 끝 */
+
+/* 코인 시세 조회 로직 시작작 */
+const coinData = [
+  { name: "코박토큰", price: 816.4, change: 0.52, link: "coin1.html" },
+  { name: "비트코인", price: 135314694, change: -0.22, link: "coin2.html" },
+  { name: "이더리움", price: 2602300, change: 0.19, link: "coin3.html" },
+  { name: "테더", price: 1438, change: -0.01, link: "coin4.html" },
+  { name: "리플", price: 3136, change: -1.32, link: "coin5.html" },
+  { name: "바이낸스 코인", price: 864676, change: -0.54, link: "coin6.html" },
+  { name: "솔라나", price: 213641, change: -0.5, link: "coin7.html" },
+  { name: "유에스디 코인", price: 1438, change: 0, link: "coin8.html" },
+  { name: "도지코인", price: 260.2, change: -1.34, link: "coin9.html" },
+  { name: "에이다", price: 1006, change: -2.64, link: "coin10.html" },
+  { name: "트론", price: 359.4, change: -0.32, link: "coin11.html" },
+  { name: "리도 스테이크 이더", price: 2598560, change: 0.12, link: "coin12.html" },
+  { name: "랩피드 비트코인", price: 135511751, change: -0.04, link: "coin13.html" },
+  { name: "수이", price: 5164, change: 2.54, link: "coin14.html" },
+  { name: "체인링크", price: 20943, change: -2.67, link: "coin15.html" },
+  { name: "아발란체", price: 32061, change: 0.18, link: "coin16.html" },
+  { name: "스텔라", price: 410.6, change: -2.97, link: "coin17.html" },
+  { name: "레오 토큰", price: 12960, change: -0.81, link: "coin18.html" },
+  { name: "톤코인", price: 4703, change: 0.6, link: "coin19.html" }
+];
+
+let currentPage = 1;
+const itemsPerPage = 10;
+let filteredCoins = [...coinData];
+
+// 코인 리스트 렌더링 함수
+function renderCoinList() {
+  const list = document.getElementById('coin-list');
+  list.innerHTML = '';
+
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const coinsToShow = filteredCoins.slice(start, end);
+
+  coinsToShow.forEach(coin => {
+    const li = document.createElement('li');
+    li.className = 'd-flex align-items-center px-2 py-2';  
+    li.style.cursor = 'pointer';
+    li.onclick = () => window.location.href = coin.link;
+
+    li.innerHTML = `
+      <div class="d-flex align-items-center flex-grow-1" style="min-width: 0;">
+        <img src="https://dummyimage.com/24x24/cccccc/000000.png&text=⧉" alt="coin" style="width: 24px; height: 24px; object-fit: cover; border-radius: 50%; margin-right: 8px;">
+        <span class="text-truncate" style="font-size: 14px;">${coin.name}</span>
+      </div>
+      <div style="width: 100px; text-align: right; font-size: 14px; ${coin.change >= 0 ? 'color:red;' : 'color:blue;'}">
+        ${coin.price.toLocaleString()}
+      </div>
+      <div style="width: 80px; text-align: right; font-size: 14px; ${coin.change >= 0 ? 'color:red;' : 'color:blue;'}">
+        ${coin.change > 0 ? '+' : ''}${coin.change}%
+      </div>
+    `;
+
+    list.appendChild(li);
+  });
+
+  updatePagination();
+}
+
+// 페이지네이션 버튼 활성/비활성 처리
+function updatePagination() {
+  const totalPages = Math.ceil(filteredCoins.length / itemsPerPage);
+  document.getElementById('prevPage').disabled = (currentPage === 1);
+  document.getElementById('nextPage').disabled = (currentPage === totalPages);
+}
+
+// 검색 필터링 기능
+document.getElementById('coinSearch').addEventListener('input', (e) => {
+  const keyword = e.target.value.trim().toLowerCase();
+  filteredCoins = coinData.filter(coin => coin.name.toLowerCase().includes(keyword));
+  currentPage = 1;
+  renderCoinList();
+});
+
+// 페이지 이동
+document.getElementById('prevPage').addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    renderCoinList();
+  }
+});
+document.getElementById('nextPage').addEventListener('click', () => {
+  const totalPages = Math.ceil(filteredCoins.length / itemsPerPage);
+  if (currentPage < totalPages) {
+    currentPage++;
+    renderCoinList();
+  }
+});
+
+// 최초 로딩
+renderCoinList();

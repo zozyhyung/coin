@@ -282,3 +282,8 @@ body {
   display: block; /* 글자도 블록처럼 위아래 정렬 */
 }
 /* 거래소 바로가기 style 끝 */
+
+#searchInput {
+  border-radius: 12px;
+  font-size: 14px;
+}
