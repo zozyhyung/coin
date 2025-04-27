@@ -283,7 +283,129 @@ body {
 }
 /* 거래소 바로가기 style 끝 */
 
+/* 코인 시세 조회 시작 */
 #searchInput {
   border-radius: 12px;
   font-size: 14px;
 }
+/* 코인 시세 조회 끝 */
+
+/*FAQ, 제휴문의, 광고문의 영역 시작*/
+.inquiry-wrapper {
+  background: #fff;
+  margin: 0 12px 16px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 0; /* 16px → 12px 로 줄였음 */
+  height: 100px; /* 높이 줄임 (기존보다) */
+}
+
+.inquiry-item {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: #212529;
+}
+
+.inquiry-icon {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 8px; /* padding도 살짝 줄였어 */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.inquiry-icon img {
+  width: 28px; /* 32px → 28px */
+  height: 28px;
+}
+
+.inquiry-text {
+  font-size: 13px; /* 살짝 줄였음 */
+  font-weight: 600;
+}
+
+.inquiry-divider {
+  width: 1px;
+  height: 100%; /* 100%로 바꿔서 위아래 다 채움 */
+  background: #e9ecef;
+}
+/*FAQ, 제휴문의, 광고문의 영역 끝*/
+
+/*investing 사이트 영역 시작*/
+.investing-box {
+  border: 1px solid #e0e0e0;
+  padding: 16px;
+  margin: 16px 12px;
+  background: #fff;
+}
+
+.investing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.investing-logo {
+  height: 24px;
+}
+
+.investing-apps {
+  display: flex;
+  gap: 8px;
+}
+
+.app-icon {
+  height: 24px;
+}
+
+.investing-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0 0;
+}
+
+.investing-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.investing-list li:last-child {
+  border-bottom: none;
+}
+
+.currency-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: #212529;
+}
+
+.currency-name {
+  font-weight: bold;
+  flex: 1;
+}
+
+.currency-value {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.currency-change {
+  font-size: 14px;
+}
+
+.text-red {
+  color: #e60023;
+}
+
+.text-blue {
+  color: #007bff;
+}
+/*investing 사이트 영역 끝*/
