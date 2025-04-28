@@ -40,13 +40,52 @@
   </div>
 </div>
 
-<!-- 탭 메뉴 -->
-<div class="bg-white d-flex justify-content-around border-bottom py-2">
-  <span class="text-primary fw-bold">홈</span>
-  <span class="text-secondary">실시간</span>
-  <span class="text-secondary">인기</span>
-  <span class="text-secondary">거래소 공시</span>
+<div class="card mb-3 rounded-4 overflow-hidden">
+  <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      
+      <!-- 첫 번째 슬라이드 -->
+      <div class="carousel-item active">
+        <a href="bitcoin-news.html" target="_blank">
+          <img src="https://cdn.pixabay.com/photo/2023/11/14/11/31/bitcoin-8384855_960_720.jpg" class="d-block w-100" alt="비트코인 뉴스">
+        </a>
+        <div class="carousel-caption d-none d-md-block">
+          <h6>비트코인 상승에도 먹구름</h6>
+          <p class="small">트럼프 발언, 시장 불안감 유발</p>
+        </div>
+      </div>
+
+      <!-- 두 번째 슬라이드 -->
+      <div class="carousel-item">
+        <a href="ethereum-news.html" target="_blank">
+          <img src="https://cdn.pixabay.com/photo/2024/01/25/11/31/ethereum-1234567_960_720.jpg" class="d-block w-100" alt="이더리움 뉴스">
+        </a>
+        <div class="carousel-caption d-none d-md-block">
+          <h6>이더리움 ETF 이슈</h6>
+          <p class="small">SEC 승인 여부 주목</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 캐러셀 컨트롤 버튼 -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">이전</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">다음</span>
+    </button>
+
+  </div>
+
+  <div class="card-body">
+    <h6 class="card-title fw-bold">최신 암호화폐 뉴스</h6>
+    <p class="card-text small text-muted">업데이트: 04.24 15:49</p>
+  </div>
 </div>
+
 
 <!-- 뉴스 콘텐츠 -->
 <div class="container py-3">
