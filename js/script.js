@@ -5,8 +5,65 @@ fetch('./layout/header.html')
     const headerContainer = document.getElementById('header-container');
     if (headerContainer) {
       headerContainer.innerHTML = data;
+      setHeaderContent();
     }
   });
+
+  function setHeaderContent() {
+    const headerContent = document.getElementById('header-content');
+    if (!headerContent) return;
+  
+    if (window.location.pathname.includes('community.html')) {
+      // 커뮤니티 화면
+      headerContent.innerHTML = `
+    <div class="d-flex align-items-center justify-content-between w-100">
+      <div class="bg-light rounded-pill p-1 d-flex align-items-center" style="gap: 8px;">
+        <button id="btn-community" class="btn btn-sm fw-bold text-dark bg-white rounded-pill px-3 py-1">커뮤니티</button>
+        <button id="btn-news" class="btn btn-sm fw-bold text-muted bg-transparent rounded-pill px-3 py-1">뉴스</button>
+      </div>
+      <div class="d-flex gap-2 align-items-center">
+        <i class="bi bi-search" style="font-size: 20px;"></i>
+        <i class="bi bi-list" style="font-size: 24px;"></i>
+      </div>
+    </div>
+  `;
+  
+      // 토글 버튼 클릭 이벤트
+      const btnCommunity = document.getElementById('btn-community');
+      const btnNews = document.getElementById('btn-news');
+  
+      btnCommunity.addEventListener('click', () => {
+        btnCommunity.classList.remove('text-muted');
+        btnCommunity.classList.add('text-dark');
+        btnNews.classList.remove('text-dark');
+        btnNews.classList.add('text-muted');
+      });
+  
+      btnNews.addEventListener('click', () => {
+        btnCommunity.classList.remove('text-dark');
+        btnCommunity.classList.add('text-muted');
+        btnNews.classList.remove('text-muted');
+        btnNews.classList.add('text-dark');
+      });
+  
+    } else {
+      // 홈 화면 (또는 다른 기본 화면)
+      headerContent.innerHTML = `
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="로고" style="width:32px;height:32px; border-radius:50%;">
+        <div class="d-flex align-items-center gap-3">
+          <i class="bi bi-search" style="font-size: 24px; font-weight: bold; color: #1b1e26;"></i>
+          <button type="button" class="btn p-0 m-0" style="background: none; border: none; font-size: 16px; font-weight: 700; color: #1b1e26;">로그인</button>
+          <div class="dropdown">
+            <button class="btn lang-btn dropdown-toggle" type="button" id="langMenu" data-bs-toggle="dropdown" aria-expanded="false">KR</button>
+            <ul class="dropdown-menu dropdown-lang dropdown-menu-end" aria-labelledby="langMenu">
+              <li><a class="dropdown-item" href="#">KR</a></li>
+              <li><a class="dropdown-item" href="#">EN</a></li>
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+  }
 
 // footer.html 불러오기
 fetch('./layout/footer.html')
@@ -16,8 +73,19 @@ fetch('./layout/footer.html')
     if (footerContainer) {
       footerContainer.innerHTML = data;
 
-      // footer 불러온 다음에 클릭 이벤트 연결해야 함
       const footerItems = footerContainer.querySelectorAll('.footer-item');
+
+      // 🔥 여기 추가
+      const currentPath = window.location.pathname.split('/').pop(); // ex) community.html
+      footerItems.forEach(item => {
+        const href = item.getAttribute('href');
+        if (href === currentPath) {
+          footerItems.forEach(i => i.classList.remove('active')); // 다 지우고
+          item.classList.add('active'); // 현재 경로에 맞는 것만 active
+        }
+      });
+
+      // 원래 있던 클릭 이벤트 (필요하면 유지)
       footerItems.forEach(item => {
         item.addEventListener('click', (e) => {
           footerItems.forEach(i => i.classList.remove('active'));
