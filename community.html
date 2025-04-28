@@ -20,6 +20,95 @@
     <!-- 업데이트 영역 (회색박스) -->
     <div id="update-container" class="px-3 pt-3"></div>
 
+    <!-- 공지 캐러셀 -->
+<div class="px-3 mt-3">
+  <div id="noticeCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+    
+    <!-- 캐러셀 내용 -->
+    <div class="carousel-inner rounded-4 bg-light p-3" id="notice-carousel-inner">
+      <!-- JS로 채움 -->
+    </div>
+
+    <!-- 캐러셀 인디케이터 -->
+    <div class="carousel-indicators position-static mt-2" id="notice-carousel-indicators">
+      <!-- JS로 채움 -->
+    </div>
+
+  </div> <!-- noticeCarousel 닫기 -->
+</div>
+
+<!-- 회색 영역 안에 버튼 -->
+<div id="filter-header" class="d-flex align-items-center justify-content-end px-3" style="height: 43px; background: #f5f6f8;">
+  <button id="filterButton" class="btn border-0 p-0 m-0" style="background: transparent; font-size: 14px; font-weight: 500; color: #212529;" onclick="openFilterPopup()">
+    한달 최신순 ▼
+  </button>
+</div>
+
+<!-- 필터 팝업 -->
+<div id="filter-popup" onclick="closeFilterPopup()">
+  <div class="filter-box" onclick="event.stopPropagation()">
+    <div class="filter-drag-handle" onclick="closeFilterPopup()"></div>
+    <div class="filter-content">
+      <strong class="d-block mb-3">필터를 선택해주세요.</strong>
+
+      <div class="section-title">기간</div>
+      <div id="period-options">
+        <div class="filter-option" onclick="selectPeriod('하루')">하루</div>
+        <div class="filter-option" onclick="selectPeriod('일주일')">일주일</div>
+        <div class="filter-option" onclick="selectPeriod('한달')">한달</div>
+        <div class="filter-option" onclick="selectPeriod('반년')">반년</div>
+      </div>
+
+      <hr class="my-4" />
+
+      <div class="section-title">정렬</div>
+      <div id="sort-options">
+        <div class="filter-option" onclick="selectSort('최신순')">최신순</div>
+        <div class="filter-option" onclick="selectSort('인기순')">인기순</div>
+        <div class="filter-option" onclick="selectSort('중요순')">중요순</div>
+        <div class="filter-option" onclick="selectSort('걱정순')">걱정순</div>
+      </div>
+    </div>
+
+    <div class="filter-footer">
+      <button class="btn btn-primary w-100" onclick="confirmFilter()">선택 완료</button>
+    </div>
+  </div>
+</div>
+
+<div id="community-list" class="community-list"></div>
+
+<!-- 공유하기 팝업 -->
+<div id="share-popup" class="share-popup" style="display:none;">
+  <div class="share-popup-inner">
+    <!-- 헤더 -->
+    <div class="share-popup-header">
+      <strong>공유하기</strong>
+      <button type="button" class="btn-close" onclick="closeSharePopup()">✖️</button>
+    </div>
+
+    <!-- 공유 아이콘 버튼들 -->
+    <div class="share-popup-body p-3 d-flex flex-wrap justify-content-center gap-4">
+      <a class="share-icon" onclick="goShare('kakao')">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/kakaotalk.svg" alt="카카오톡">
+        <div>카카오톡</div>
+      </a>
+      <a class="share-icon" onclick="goShare('telegram')">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="텔레그램">
+        <div>텔레그램</div>
+      </a>
+      <a class="share-icon" onclick="goShare('facebook')">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="페이스북">
+        <div>페이스북</div>
+      </a>
+      <a class="share-icon" onclick="goShare('twitter')">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="트위터">
+        <div>트위터</div>
+      </a>
+    </div>
+  </div>
+</div>
+
     <!-- 푸터 영역 -->
     <div id="footer-container"></div>
 
