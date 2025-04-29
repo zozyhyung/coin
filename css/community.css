@@ -24,6 +24,25 @@
   background-color: #007bff;
 }
 
+.carousel-item .text-muted {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;   /* 두 줄 제한 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.notice-description {
+  font-size: 13px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
 /* ======================== */
 /* 여기부터 필터 팝업 관련 수정 */
 /* ======================== */

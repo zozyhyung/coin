@@ -1,0 +1,253 @@
+#header-spacer {
+    height: 50px;
+  }
+  
+  #notice-carousel-inner {
+    min-height: 120px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;  /* 세로 중앙 정렬 */
+    padding: 0 16px;       /* 좌우 여백만 줌 */
+  }
+  
+  /*캐러셀 부분 시작*/
+  .carousel-indicators {
+    justify-content: center;
+    
+  }
+  
+  .carousel-indicators [data-bs-target] {
+    background-color: #bbb;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  
+  .carousel-indicators .active {
+    background-color: #007bff;
+  }
+
+  .carousel-item .text-muted {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;   /* 두 줄 제한 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+
+  .notice-description {
+    font-size: 13px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+  /*캐러셀 부분 끝*/ 
+
+/*탭 로직 시작 */ 
+  .tab-btn {
+    flex: 1;
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-size: 15px;
+    color: #888;
+    padding: 10px 0;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .tab-btn.active {
+    color: #000;
+    border-bottom: 2px solid #007bff;
+  }
+  
+  .tab-content-item {
+    display: none;
+  }
+  /*탭 로직 끝 */
+  
+  .coin-price-badge {
+    background: #f5f6f8;
+    font-weight: 500;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .community-item {
+    background: #fff;
+  }
+  
+  .community-item:hover {
+    background: #f9f9f9;
+  }
+  
+  .community-list {
+    background: #fff;
+  }
+  
+  /* 공유하기 팝업 */
+  .share-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 3000;
+  }
+  
+  .share-popup-inner {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+  
+  .share-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .share-popup-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .share-thumbnail-title {
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .share-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px; /* 3개씩 한줄 나오게 크기 고정 */
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+  }
+  
+  .share-icon img {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 6px;
+  }
+  
+  .btn-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: #666;
+  }
+  
+  .community-text-area {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .community-text-area .title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    white-space: normal; /* 추가!! */
+    font-weight: bold;
+    font-size: 16px;
+    color: #212529;
+    line-height: 1.4; /* 줄 높이 조정 */
+    max-height: calc(1.4em * 2); /* 2줄까지만 */
+  }
+  
+  .community-text-area .content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  /* 인기 탭 내부 기간 탭 스타일 시작 */
+  .popular-title {
+    font-size: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.4;
+    max-height: 1.4em;
+  }
+
+  .period-btn {
+    font-size: 13px;
+    color: #6c757d; /* 연한 회색 */
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 4px 12px;
+    margin-right: 6px;
+    font-weight: 500;
+  }
+  
+  .period-btn.active {
+    background-color: #212529;
+    color: #fff;
+    border-color: #212529;
+  }
+    /* 인기 탭 내부 기간 탭 스타일 시작 */
+
+    /* 거래소 증시 탭 스타일 시작 */
+    .exchange-btn {
+        border: 1px solid #dee2e6;
+        background-color: white;
+        color: #6c757d;
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .exchange-btn.active {
+        background-color: #212529;
+        color: white;
+        border-color: #212529;
+      }
+      
+      .exchange-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      #exchange-market-filter {
+        scrollbar-width: none;          /* Firefox */
+        -ms-overflow-style: none;       /* IE 10+ */
+      }
+      #exchange-market-filter::-webkit-scrollbar {
+        display: none;                  /* Chrome, Safari, Edge */
+      }
+          /* 거래소 증시 탭 스타일 끝 */

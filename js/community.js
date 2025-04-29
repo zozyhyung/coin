@@ -9,16 +9,21 @@ fetch('./layout/header.html')
     }
   });
 
-function setHeaderContent() {
-  const headerContent = document.getElementById('header-content');
-  if (!headerContent) return;
-
-  if (window.location.pathname.includes('community.html')) {
+  function setHeaderContent() {
+    const headerContent = document.getElementById('header-content');
+    if (!headerContent) return;
+  
+    const currentPath = window.location.pathname;
+  
     headerContent.innerHTML = `
       <div class="d-flex align-items-center justify-content-between w-100">
         <div class="bg-light rounded-pill p-1 d-flex align-items-center" style="gap: 8px;">
-          <button id="btn-community" class="btn btn-sm fw-bold text-dark bg-white rounded-pill px-3 py-1">커뮤니티</button>
-          <button id="btn-news" class="btn btn-sm fw-bold text-muted bg-transparent rounded-pill px-3 py-1">뉴스</button>
+          <button id="btn-community" class="btn btn-sm fw-bold rounded-pill px-3 py-1 ${
+            currentPath.includes('community.html') ? 'text-dark bg-white' : 'text-muted bg-transparent'
+          }">커뮤니티</button>
+          <button id="btn-news" class="btn btn-sm fw-bold rounded-pill px-3 py-1 ${
+            currentPath.includes('community_news.html') ? 'text-dark bg-white' : 'text-muted bg-transparent'
+          }">뉴스</button>
         </div>
         <div class="d-flex gap-2 align-items-center">
           <i class="bi bi-search" style="font-size: 20px;"></i>
@@ -26,26 +31,36 @@ function setHeaderContent() {
         </div>
       </div>
     `;
-
+  
     const btnCommunity = document.getElementById('btn-community');
     const btnNews = document.getElementById('btn-news');
-
+  
     btnCommunity.addEventListener('click', () => {
+      //  기존 스타일 토글 유지
       btnCommunity.classList.remove('text-muted');
       btnCommunity.classList.add('text-dark');
       btnNews.classList.remove('text-dark');
       btnNews.classList.add('text-muted');
+  
+      //  페이지 이동
+      if (!currentPath.includes('community.html')) {
+        window.location.href = 'community.html';
+      }
     });
-
+  
     btnNews.addEventListener('click', () => {
+      //  기존 스타일 토글 유지
       btnCommunity.classList.remove('text-dark');
       btnCommunity.classList.add('text-muted');
       btnNews.classList.remove('text-muted');
       btnNews.classList.add('text-dark');
+  
+      //  페이지 이동
+      if (!currentPath.includes('community_news.html')) {
+        window.location.href = 'community_news.html';
+      }
     });
-
   }
-}
 
 // === footer.html 가져오기 ===
 fetch('./layout/footer.html')
@@ -54,6 +69,18 @@ fetch('./layout/footer.html')
     const footerContainer = document.getElementById('footer-container');
     if (footerContainer) {
       footerContainer.innerHTML = data;
+
+      // 현재 경로 기반으로 footer active 설정
+      const currentPath = window.location.pathname.split('/').pop(); // ex: community.html
+      const footerItems = footerContainer.querySelectorAll('.footer-item');
+
+      footerItems.forEach(item => {
+        const href = item.getAttribute('href');
+        if (href === currentPath) {
+          footerItems.forEach(i => i.classList.remove('active')); // 전부 초기화
+          item.classList.add('active'); // 현재만 active
+        }
+      });
     }
   });
 
@@ -116,7 +143,7 @@ function renderNoticeCarousel() {
           <div class="fw-bold mb-1" style="font-size: 14px;">
             <i class="bi bi-lightning-fill text-primary me-1"></i> ${item.title}
           </div>
-          <div class="text-muted" style="font-size: 13px;">${item.description}</div>
+          <div class="text-muted notice-description">${item.description}</div>
         </div>
       </a>
     `;

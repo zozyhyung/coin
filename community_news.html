@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>커뮤니티</title>
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/community_news.css">
+  <!-- Bootstrap Icons (아이콘용) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- 헤더 영역 -->
+    <div id="header-container"></div>
+
+    <div style="height: 55px;"></div> 
+
+    <!-- 공지 캐러셀 -->
+<div class="px-3 mt-3">
+  <div id="noticeCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+    
+    <!-- 캐러셀 내용 -->
+    <div class="carousel-inner rounded-4 bg-light p-3" id="notice-carousel-inner">
+      <!-- JS로 채움 -->
+    </div>
+
+    <!-- 캐러셀 인디케이터 -->
+    <div class="carousel-indicators position-static mt-2" id="notice-carousel-indicators">
+      <!-- JS로 채움 -->
+    </div>
+
+  </div> <!-- noticeCarousel 닫기 -->
+</div>
+
+<!-- 탭  -->
+<div id="news-tabs" class="d-flex justify-content-around border-bottom px-3 py-2 bg-white">
+    <button class="tab-btn active" data-tab="home">홈</button>
+    <button class="tab-btn" data-tab="realtime">실시간</button>
+    <button class="tab-btn" data-tab="popular">인기</button>
+    <button class="tab-btn" data-tab="exchange">거래소 공시</button>
+  </div>
+  
+  <!-- 탭별 콘텐츠 영역 -->
+  <div class="news-tab-content px-3 py-2">
+    <div class="tab-content-item" id="tab-home" style="display:block;">
+      <div id="community-list-home" class="community-list"></div>
+    </div>
+    <div class="tab-content-item" id="tab-realtime" style="display:none;">
+      <div id="community-list-realtime" class="community-list"></div>
+    </div>
+    <div class="tab-content-item" id="tab-popular" style="display:none;">
+        <!-- 인기 탭 내부 기간별 버튼 -->
+        <div id="popular-filter" class="d-flex gap-2 mb-2" style="display: none;">
+            <button class="period-btn active" onclick="filterPopularPeriod('1')">오늘</button>
+            <button class="period-btn" onclick="filterPopularPeriod('7')">일주일</button>
+            <button class="period-btn" onclick="filterPopularPeriod('30')">한달</button>
+        </div>
+        <!-- 여기까지 추가 -->
+    <div id="community-list-popular" class="community-list"></div>
+    </div>
+    <div class="tab-content-item" id="tab-exchange" style="display:none;">
+        <!-- 거래소 증시 내부 거래소 별 조건 -->
+        <div id="exchange-market-filter" class="d-flex gap-2 overflow-auto px-3 py-2" style="white-space: nowrap;">
+            <button class="btn btn-sm btn-dark rounded-pill exchange-btn" onclick="filterExchangeList('전체')">전체</button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill exchange-btn" onclick="filterExchangeList('Binance')">
+              <img src="./img/exchange/binance.png" width="16" class="me-1"> Binance
+            </button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill exchange-btn" onclick="filterExchangeList('OKX')">
+              <img src="./img/exchange/okx.png" width="16" class="me-1"> OKX
+            </button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill exchange-btn" onclick="filterExchangeList('Bybit')">
+              <img src="./img/exchange/bybit.png" width="16" class="me-1"> Bybit
+            </button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill exchange-btn" onclick="filterExchangeList('업비트')">
+              <img src="./img/exchange/upbit.png" width="16" class="me-1"> 업비트
+            </button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill exchange-btn" onclick="filterExchangeList('빗썸')">
+              <img src="./img/exchange/bithumb.png" width="16" class="me-1"> 빗썸
+            </button>
+          </div>
+      <div id="community-list-exchange" class="community-list"></div>
+    </div>
+  </div>
+<!-- 탭  끝-->
+
+
+<!-- 공유하기 팝업 -->
+<div id="share-popup" class="share-popup" style="display:none;">
+  <div class="share-popup-inner">
+    <!-- 헤더 -->
+    <div class="share-popup-header">
+      <strong>공유하기</strong>
+      <button type="button" class="btn-close" onclick="closeSharePopup()">✖️</button>
+    </div>
+
+    <!-- 공유 아이콘 버튼들 -->
+    <div class="share-popup-body p-3 d-flex flex-wrap justify-content-center gap-4">
+      <a class="share-icon" onclick="goShare('kakao')">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/kakaotalk.svg" alt="카카오톡">
+        <div>카카오톡</div>
+      </a>
+      <a class="share-icon" onclick="goShare('telegram')">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="텔레그램">
+        <div>텔레그램</div>
+      </a>
+      <a class="share-icon" onclick="goShare('facebook')">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="페이스북">
+        <div>페이스북</div>
+      </a>
+      <a class="share-icon" onclick="goShare('twitter')">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="트위터">
+        <div>트위터</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+    <!-- 푸터 영역 -->
+    <div id="footer-container"></div>
+
+    <!-- 스크롤 최상단 이동 버튼 -->
+    <button id="scrollTopBtn" class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" style="
+      position: fixed;
+      bottom: 90px;
+      right: 15px;
+      display: none;
+      z-index: 1000;
+      width: 45px;
+      height: 45px;
+      font-size: 24px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    ">
+      <i class="bi bi-chevron-up" style="font-size: 20px;"></i>
+    </button>
+
+  </div>
+
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/community_news.js"></script>
+</body>
+</html>
