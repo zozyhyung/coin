@@ -68,6 +68,7 @@
         <div class="fw-semibold mb-1">[거래] 사인(SIGN) 신규 거래지원 안내 (KRW, BTC, USDT 마켓)</div>
         <small class="text-muted">업비트 · 14분 전</small>
       </div>
+      <div class="container mt-3" id="disclosureList"></div>
 
       <!-- 공시 2 -->
       <div class="border-bottom pb-3 mb-3">
@@ -116,6 +117,33 @@
     function goPopular() {
       window.location.href = 'news_popular.html';
     }
+  </script>
+  <script>
+    async function loadDisclosures() {
+      try {
+        const res = await fetch("http://localhost:5000/api/disclosures"); // Flask API 주소
+        const data = await res.json();
+  
+        const listEl = document.getElementById('disclosureList');
+        listEl.innerHTML = ''; // 기존 초기화
+  
+        data.forEach(item => {
+          const el = document.createElement('div');
+          el.className = 'border-bottom pb-3 mb-3';
+          el.innerHTML = `
+            <div class="fw-semibold mb-1">
+              <a href="${item.link}" target="_blank">${item.title}</a>
+            </div>
+            <small class="text-muted">${item.company} · ${item.date}</small>
+          `;
+          listEl.appendChild(el);
+        });
+      } catch (err) {
+        console.error('공시 데이터를 불러오지 못했습니다:', err);
+      }
+    }
+  
+    loadDisclosures(); // 페이지 로드시 실행
   </script>
 </body>
 </html>
