@@ -243,3 +243,26 @@
   color: #666;
   margin-top: 4px;
 }
+
+/* === header 햄버거 버튼 로그인 슬라이드 패널 시작 === */
+.login-slide-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 66.6666%;
+  max-width: 420px;
+  height: 100%;
+  background: #fff;
+  z-index: 3000;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+  transition: right 0.3s ease;
+}
+
+.login-slide-panel.show {
+  right: 0;
+}
+
+.login-panel-inner {
+  padding: 40px 20px;
+}
+/* === header 햄버거 버튼 로그인 슬라이드 패널 끝 === */
