@@ -88,7 +88,7 @@ fetch('./layout/header.html')
     } else {
       // 비로그인 상태
       headerContent.innerHTML = `
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="로고" style="width:32px;height:32px; border-radius:50%;">
+        <img src="./images/home_logo.png" alt="로고" style="width:32px;height:32px; border-radius:50%;">
         <div class="d-flex align-items-center gap-3">
           <i class="bi bi-search" style="font-size: 24px; font-weight: bold; color: #1b1e26;"></i>
           <button type="button" class="btn p-0 m-0" style="background: none; border: none; font-size: 16px; font-weight: 700; color: #1b1e26;">로그인</button>
