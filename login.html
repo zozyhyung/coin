@@ -6,6 +6,10 @@
   <title>로그인</title>
   <link rel="stylesheet" href="./css/dashboard.css">
   <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/login.css">
+  <!-- Bootstrap Icons (아이콘용) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body class="bg-light">
   <div class="container py-5" style="max-width: 400px;">
@@ -31,24 +35,13 @@
     </form>
   </div>
 
-  <nav class="navbar fixed-bottom bg-white border-top d-flex justify-content-around">
-    <a href="#" class="text-center text-dark">
-      <div>홈</div>
-    </a>
-    <a href="#" class="text-center text-dark">
-      <div>차트</div>
-    </a>
-    <a href="#" class="text-center text-dark">
-      <div>예측정보</div>
-    </a>
-    <a href="#" class="text-center text-dark">
-      <div>커뮤니티</div>
-    </a>
-    <a href="#" class="text-center text-dark">
-      <div>마이페이지</div>
-    </a>
-  </nav>
-
+  <!-- 푸터 영역 -->
+  <div id="footer-container"></div>
+  <script>
+    // // 로그인 페이지 진입 시 이전 페이지 기억
+    // sessionStorage.setItem('prevPage', document.referrer);
+  </script>
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/login.js"></script>
 </body>
 </html>

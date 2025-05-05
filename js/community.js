@@ -60,6 +60,11 @@ fetch('./layout/header.html')
         window.location.href = 'community_news.html';
       }
     });
+
+    const hamburger = document.querySelector('.bi-list');
+  hamburger.addEventListener('click', () => {
+    openLoginPanel();
+  });
   }
 
 // === footer.html 가져오기 ===
@@ -408,3 +413,46 @@ function closeSharePopup() {
 document.addEventListener('DOMContentLoaded', () => {
   sortCommunityData(); // 🔥 정렬해서 출력하도록 변경
 });
+
+/* header 햄버거 버튼 시작 */
+// 로그인 패널 열기
+function openLoginPanel() {
+  const panel = document.getElementById('login-panel');
+  if (panel) panel.classList.add('show');
+  // 클릭 전파 방지 등록 - 살짝 지연해서 등록 (버튼 누르자마자 닫히는 버그 방지)
+  setTimeout(() => {
+    document.addEventListener('click', handleOutsideClick);
+  }, 10);
+}
+
+// 로그인 패널 닫기
+function closeLoginPanel() {
+  const panel = document.getElementById('login-panel');
+  if (panel) panel.classList.remove('show');
+  document.removeEventListener('click', handleOutsideClick);
+}
+
+// 바깥 클릭 시 닫기
+function handleOutsideClick(e) {
+  const panel = document.getElementById('login-panel');
+  const hamburger = document.querySelector('.bi-list');
+
+  if (
+    panel &&
+    !panel.contains(e.target) &&
+    !hamburger.contains(e.target)
+  ) {
+    
+    // 클릭 무효화해서 캐러셀, 링크 등 안 작동하게 막음
+    e.preventDefault();
+    e.stopPropagation();
+    closeLoginPanel();
+  }
+}
+
+// 로그인 페이지로 이동 
+function moveToLogin() {
+  sessionStorage.setItem('prevPage', window.location.pathname);
+  window.location.href = 'login.html'; // 실제 로그인 페이지 주소로 바꾸세요
+}
+/* header 햄버거 버튼 끝 */
