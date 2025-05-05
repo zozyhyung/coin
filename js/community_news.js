@@ -60,6 +60,11 @@ fetch('./layout/header.html')
         window.location.href = 'community_news.html';
       }
     });
+
+    const hamburger = document.querySelector('.bi-list');
+    hamburger.addEventListener('click', () => {
+      openLoginPanel();
+    });
   }
 
 // === footer.html 가져오기 ===
@@ -101,6 +106,26 @@ fetch('./layout/footer.html')
       }
     }
   });
+
+  // 스크롤 최상단 이동 버튼 기능
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+// 스크롤 내릴 때 버튼 보이기
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    scrollTopBtn.style.display = 'block';
+  } else {
+    scrollTopBtn.style.display = 'none';
+  }
+});
+
+// 버튼 클릭하면 맨 위로 부드럽게 이동
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
 
 // ===== 공지 캐러셀 데이터 =====
 const noticeItems = [
@@ -598,3 +623,145 @@ document.addEventListener('DOMContentLoaded', () => {
     renderNoticeCarousel();
     renderCommunityList('community-list-home', homeCommunityData, 'home');
   });
+
+/* header 햄버거 버튼 시작 */
+// 로그인 패널 열기
+function openLoginPanel() {
+  const panel = document.getElementById('login-panel');
+  if (panel) {
+    setupLoginPanelContent();
+    panel.classList.add('show');
+  }
+
+  // body 스크롤 막기
+  document.body.classList.add('no-scroll');
+
+  setTimeout(() => {
+    document.addEventListener('click', handleOutsideClick);
+  }, 10);
+}
+
+// 로그인 패널 닫기
+function closeLoginPanel() {
+  const panel = document.getElementById('login-panel');
+  if (panel) panel.classList.remove('show');
+
+  // body 스크롤 해제
+  document.body.classList.remove('no-scroll');
+
+  document.removeEventListener('click', handleOutsideClick);
+}
+
+// 바깥 클릭 시 닫기
+function handleOutsideClick(e) {
+  const panel = document.getElementById('login-panel');
+  const hamburger = document.querySelector('.bi-list');
+
+  if (
+    panel &&
+    !panel.contains(e.target) &&
+    !hamburger.contains(e.target)
+  ) {
+    
+    // 클릭 무효화해서 캐러셀, 링크 등 안 작동하게 막음
+    e.preventDefault();
+    e.stopPropagation();
+    closeLoginPanel();
+  }
+}
+
+const recentPosts = [
+  {
+    title: "[암호화폐 동향] 비트코인 엔드게임 시나리오",
+    tag: "코인뉴스",
+    link: "post-detail-1.html"
+  },
+  {
+    title: "펀디AI, 엔비디아 인셉션 합류",
+    tag: "코인뉴스",
+    link: "post-detail-2.html"
+  },
+  {
+    title: "애리조나 호재로 비트코인 소폭 상승",
+    tag: "코인뉴스",
+    link: "post-detail-3.html"
+  },
+  {
+    title: "[EVENT] CBK 트위터 팔로우 이벤트",
+    tag: "공지/이벤트",
+    link: "post-detail-4.html"
+  }
+];
+
+// 로그인 페이지로 이동 
+function moveToLogin() {
+  sessionStorage.setItem('prevPage', window.location.pathname);
+  window.location.href = 'login.html'; // 실제 로그인 페이지 주소로 바꾸세요
+}
+
+function setupLoginPanelContent() {
+  const inner = document.getElementById('login-panel-inner');
+  if (!inner) return;
+
+  const user = sessionStorage.getItem('user');
+
+  if (user) {
+    const recentPostHtml = recentPosts.map(post => `
+      <li class="d-flex justify-content-between align-items-center recent-view-item" onclick="location.href='${post.link}'">
+        <span class="text-truncate title" style="max-width: 80%;">${post.title}</span>
+        <span class="badge bg-light text-dark">${post.tag}</span>
+      </li>
+    `).join('');
+
+    inner.innerHTML = `
+      <div class="login-menu-wrapper">
+        <div class="login-menu-body">
+          <div class="login-menu-grid">
+            <div class="menu-item" onclick="location.href='alert.html'">
+              <i class="bi bi-bell"></i>
+              <span>알림</span>
+            </div>
+            <div class="menu-item profile-icon" onclick="location.href='profile.html'">
+              <i class="bi bi-person-circle"></i>
+              <span>프로필</span>
+            </div>
+            <div class="menu-item" onclick="location.href='settings.html'">
+              <i class="bi bi-gear"></i>
+              <span>설정</span>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <div class="fw-bold mb-2">최근 본 게시글</div>
+            <ul class="list-unstyled small recent-view-list">
+              ${recentPostHtml}
+            </ul>
+
+            <div class="fw-bold mt-4 mb-2">참여 스페이스</div>
+            <div class="text-muted small">관심 스페이스가 없습니다.</div>
+            <div class="text-primary mt-2" style="cursor:pointer;">더 보기</div>
+          </div>
+        </div>
+
+        <div class="login-menu-footer">
+          <button class="btn btn-outline-secondary" onclick="logout()">로그아웃</button>
+        </div>
+      </div>
+    `;
+  } else {
+    inner.innerHTML = `
+      <div class="text-center mt-5">
+        <img src="./images/rocket.png" alt="로켓" style="width: 60px;" />
+        <p class="mt-3 fw-bold">더 많은 기능을 위해<br />로그인하세요.</p>
+        <button class="btn btn-primary mt-3 px-4" onclick="moveToLogin()">로그인</button>
+      </div>
+    `;
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('user');
+  closeLoginPanel();
+  location.reload(); // 또는 필요 시 메인 페이지 이동
+}
+/* header 햄버거 버튼 끝 */

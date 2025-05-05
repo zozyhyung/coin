@@ -20,7 +20,7 @@ fetch('./layout/footer.html')
     }
   });
 
-  // === 로그인 처리 ===
+  // === 로그인 처리 ===   임시 처리임  나중에 서버쪽에서 로그인 시 서버에서 JWT 토큰을 발급해줘야 개발 가능
     document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
   
