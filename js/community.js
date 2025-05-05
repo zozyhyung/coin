@@ -532,7 +532,7 @@ function setupLoginPanelContent() {
               <span>알림</span>
             </div>
             <div class="menu-item profile-icon" onclick="location.href='profile.html'">
-              <i class="bi bi-person-circle"></i>
+              <i class="bi bi-person-circle" style="color: #9376e0;"></i>
               <span>프로필</span>
             </div>
             <div class="menu-item" onclick="location.href='settings.html'">

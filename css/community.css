@@ -326,20 +326,6 @@ body.no-scroll {
   overflow: hidden;
 }
 
-/* 프로필 이미지 */
-.profile-icon i {
-  background-color: #f0ebff; /* 연보라색 배경 */
-  color: #7b61ff; /* 아이콘 색상 (연보라색 계열) */
-  padding: 10px;
-  border-radius: 50%;
-  font-size: 20px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-}
-
 .recent-view-list li {
   padding: 12px 0;
   border-bottom: 1px solid #f1f1f1;
