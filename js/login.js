@@ -36,7 +36,7 @@ fetch('./layout/footer.html')
     // 가짜 로그인 정보
     const mockUser = {
       email,
-      nickname: '코박유저'  // 원하는 닉네임 하드코딩 가능
+      nickname: 'test계정1'  // api 나와야함
     };
   
     // 세션에 저장
