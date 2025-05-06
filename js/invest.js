@@ -12,7 +12,87 @@ fetch('./layout/header.html')
   function setHeaderContent() {
     const headerContent = document.getElementById('header-content');
     if (!headerContent) return;
+
+    const user = sessionStorage.getItem('user');
   
+    if (user) {
+      // 로그인된 경우
+      headerContent.innerHTML = `
+      <div class="d-flex align-items-center justify-content-between w-100 px-2 py-2">
+        <div class="d-flex align-items-center gap-2">
+          <button id="btn-back" class="btn p-0 border-0 bg-transparent">
+            <i class="bi bi-arrow-left" style="font-size: 22px;"></i>
+          </button>
+          <span class="fw-bold" style="font-size: 18px;">투자정보</span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <i class="bi bi-search" style="font-size: 24px; font-weight: bold; color: #1b1e26;"></i>
+          <i class="bi bi-bell" id="alertIcon" style="font-size: 24px; cursor: pointer;"></i>
+          <i class="bi bi-person-circle" id="profileIcon" style="font-size: 24px; cursor: pointer; color: #9376e0;"></i>
+          <i class="bi bi-list" style="font-size: 24px;"></i>
+        </div>
+        </<div>
+      `;
+  
+      // 팝업 토글 (간단한 토글만 구현 - 내용은 비워둠)
+      setTimeout(() => {
+        const bell = document.getElementById('alertIcon');
+        const profile = document.getElementById('profileIcon');
+  
+        if (bell) {
+          bell.addEventListener('click', (e) => {
+            e.stopPropagation();
+            togglePopup('alert-popup');
+          });
+        }
+  
+        if (profile) {
+          profile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            togglePopup('profile-popup');
+          });
+        }
+  
+        // 바깥 클릭 시 닫기
+        document.addEventListener('click', () => {
+          closePopup('alert-popup');
+          closePopup('profile-popup');
+        });
+      }, 10);
+  
+      // 팝업 추가 삽입
+      const userData = JSON.parse(sessionStorage.getItem('user'));
+      const nickname = userData?.nickname || '닉네임';
+      
+      const popupHtml = `
+      <div id="alert-popup" class="popup-box d-none">
+        <div class="p-3">알림이 없습니다.</div>
+      </div>
+      <div id="profile-popup" class="popup-box d-none" style="
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        font-size: 14px;
+      ">
+        <div class="px-3 py-2 d-flex align-items-center">
+          <i class="bi bi-person-circle me-2" style="font-size: 20px; color: #9376e0;"></i>
+          <span class="fw-normal text-dark" style="font-weight: 500;">${nickname}</span>
+        </div>
+        <ul class="list-unstyled m-0">
+          <li class="px-3 py-2 hover-bg text-muted" onclick="location.href='profile.html'">마이페이지 이동</li>
+          <li class="px-3 py-2 hover-bg text-muted" onclick="location.href='space.html'">스페이스 이동</li>
+          <li class="px-3 py-2 hover-bg text-danger" onclick="logout()">로그아웃</li>
+        </ul>
+      </div>
+    `;
+      document.body.insertAdjacentHTML('beforeend', popupHtml);
+  
+    } else {
     headerContent.innerHTML = `
       <div class="d-flex align-items-center justify-content-between w-100 px-2 py-2">
         <div class="d-flex align-items-center gap-2">
@@ -22,19 +102,25 @@ fetch('./layout/header.html')
           <span class="fw-bold" style="font-size: 18px;">투자정보</span>
         </div>
         <div class="d-flex align-items-center gap-3">
-          <i class="bi bi-search" style="font-size: 20px;"></i>
-          <i class="bi bi-bell" style="font-size: 20px;"></i>
-          <i class="bi bi-person-circle" style="font-size: 20px;"></i>
-          <div class="dropdown">
-            <button class="btn lang-btn dropdown-toggle p-0 border-0 bg-transparent" type="button" id="langMenu" data-bs-toggle="dropdown" aria-expanded="false">KR</button>
-            <ul class="dropdown-menu dropdown-lang dropdown-menu-end" aria-labelledby="langMenu">
-              <li><a class="dropdown-item" href="#">KR</a></li>
-              <li><a class="dropdown-item" href="#">EN</a></li>
-            </ul>
-          </div>
+          <i class="bi bi-search" style="font-size: 24px; font-weight: bold; color: #1b1e26;"></i>
+          <button type="button" class="btn-login btn p-0 m-0" style="background: none; border: none; font-size: 16px; font-weight: 700; color: #1b1e26;">로그인</button>
+          <i class="bi bi-list" style="font-size: 24px;"></i>
         </div>
       </div>
     `;
+
+    setTimeout(() => {
+      const loginBtn = document.querySelector('.btn-login');
+      if (loginBtn) {
+        loginBtn.addEventListener('click', () => {
+          sessionStorage.setItem('prevPage', window.location.pathname);
+          window.location.href = 'login.html';
+        });
+      } else {
+        console.warn('로그인 버튼 못 찾음');
+      }
+    }, 10);
+    }
   
     document.getElementById('btn-back')?.addEventListener('click', () => {
       const ref = document.referrer;
@@ -44,6 +130,26 @@ fetch('./layout/header.html')
         window.location.href = 'index.html';
       }
     });
+
+    const hamburger = document.querySelector('.bi-list');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        openLoginPanel();
+      });
+    }
+  }
+
+  function togglePopup(id) {
+    const popup = document.getElementById(id);
+    if (popup) {
+      popup.classList.toggle('d-none');
+    }
+  }
+  function closePopup(id) {
+    const popup = document.getElementById(id);
+    if (popup) {
+      popup.classList.add('d-none');
+    }
   }
 
 // === footer.html 가져오기 ===
@@ -213,6 +319,148 @@ fetch('./layout/footer.html')
   document.getElementById('search-input').addEventListener('input', () => {
     renderCoins();
   });
+
+  /* header 햄버거 버튼 시작 */
+// 로그인 패널 열기
+function openLoginPanel() {
+  const panel = document.getElementById('login-panel');
+  if (panel) {
+    setupLoginPanelContent();
+    panel.classList.add('show');
+  }
+
+  // body 스크롤 막기
+  document.body.classList.add('no-scroll');
+
+  setTimeout(() => {
+    document.addEventListener('click', handleOutsideClick);
+  }, 10);
+}
+
+// 로그인 패널 닫기
+function closeLoginPanel() {
+  const panel = document.getElementById('login-panel');
+  if (panel) panel.classList.remove('show');
+
+  // body 스크롤 해제
+  document.body.classList.remove('no-scroll');
+
+  document.removeEventListener('click', handleOutsideClick);
+}
+
+// 바깥 클릭 시 닫기
+function handleOutsideClick(e) {
+  const panel = document.getElementById('login-panel');
+  const hamburger = document.querySelector('.bi-list');
+
+  if (
+    panel &&
+    !panel.contains(e.target) &&
+    !hamburger.contains(e.target)
+  ) {
+    
+    // 클릭 무효화해서 캐러셀, 링크 등 안 작동하게 막음
+    e.preventDefault();
+    e.stopPropagation();
+    closeLoginPanel();
+  }
+}
+
+const recentPosts = [
+  {
+    title: "[암호화폐 동향] 비트코인 엔드게임 시나리오",
+    tag: "코인뉴스",
+    link: "post-detail-1.html"
+  },
+  {
+    title: "펀디AI, 엔비디아 인셉션 합류",
+    tag: "코인뉴스",
+    link: "post-detail-2.html"
+  },
+  {
+    title: "애리조나 호재로 비트코인 소폭 상승",
+    tag: "코인뉴스",
+    link: "post-detail-3.html"
+  },
+  {
+    title: "[EVENT] CBK 트위터 팔로우 이벤트",
+    tag: "공지/이벤트",
+    link: "post-detail-4.html"
+  }
+];
+
+// 로그인 페이지로 이동 
+function moveToLogin() {
+  sessionStorage.setItem('prevPage', window.location.pathname);
+  window.location.href = 'login.html'; // 실제 로그인 페이지 주소로 바꾸세요
+}
+
+function setupLoginPanelContent() {
+  const inner = document.getElementById('login-panel-inner');
+  if (!inner) return;
+
+  const user = sessionStorage.getItem('user');
+
+  if (user) {
+    const recentPostHtml = recentPosts.map(post => `
+      <li class="d-flex justify-content-between align-items-center recent-view-item" onclick="location.href='${post.link}'">
+        <span class="text-truncate title" style="max-width: 80%;">${post.title}</span>
+        <span class="badge bg-light text-dark">${post.tag}</span>
+      </li>
+    `).join('');
+
+    inner.innerHTML = `
+      <div class="login-menu-wrapper">
+        <div class="login-menu-body">
+          <div class="login-menu-grid">
+            <div class="menu-item" onclick="location.href='alert.html'">
+              <i class="bi bi-bell"></i>
+              <span>알림</span>
+            </div>
+            <div class="menu-item profile-icon" onclick="location.href='profile.html'">
+              <i class="bi bi-person-circle" style="color: #9376e0;"></i>
+              <span>프로필</span>
+            </div>
+            <div class="menu-item" onclick="location.href='settings.html'">
+              <i class="bi bi-gear"></i>
+              <span>설정</span>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <div class="fw-bold mb-2">최근 본 게시글</div>
+            <ul class="list-unstyled small recent-view-list">
+              ${recentPostHtml}
+            </ul>
+
+            <div class="fw-bold mt-4 mb-2">참여 스페이스</div>
+            <div class="text-muted small">관심 스페이스가 없습니다.</div>
+            <div class="text-primary mt-2" style="cursor:pointer;">더 보기</div>
+          </div>
+        </div>
+
+        <div class="login-menu-footer">
+          <button class="btn btn-outline-secondary" onclick="logout()">로그아웃</button>
+        </div>
+      </div>
+    `;
+  } else {
+    inner.innerHTML = `
+      <div class="text-center mt-5">
+        <img src="./images/rocket.png" alt="로켓" style="width: 60px;" />
+        <p class="mt-3 fw-bold">더 많은 기능을 위해<br />로그인하세요.</p>
+        <button class="btn btn-primary mt-3 px-4" onclick="moveToLogin()">로그인</button>
+      </div>
+    `;
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('user');
+  closeLoginPanel();
+  location.reload(); // 또는 필요 시 메인 페이지 이동
+}
+/* header 햄버거 버튼 끝 */
   
   // 초기 렌더링
   renderCoins();
