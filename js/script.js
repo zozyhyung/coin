@@ -161,7 +161,7 @@ window.addEventListener('DOMContentLoaded', () => {
   toggleMainTab('popular');
 });
 
-// 스크롤 최상단 이동 버튼 기능
+/* 스크롤 최상단 이동 버튼 기능 로직 시작 */
 const scrollTopBtn = document.getElementById('scrollTopBtn');
 
 // 스크롤 내릴 때 버튼 보이기
@@ -180,6 +180,7 @@ scrollTopBtn.addEventListener('click', () => {
     behavior: 'smooth'
   });
 });
+/* 스크롤 최상단 이동 버튼 기능 로직 끝 */
 
 const banners = [
     {
@@ -946,3 +947,41 @@ function logout() {
 
 // 최초 로딩
 renderCoinList();
+
+/* 글쓰기 버튼 클릭시 이동 로직 시작 */
+document.addEventListener('DOMContentLoaded', () => {
+  const user = sessionStorage.getItem('user');
+  const isLoggedIn = user && user !== 'null' && user !== 'undefined' && user.trim() !== '';
+
+  // 글쓰기 버튼 생성
+  const writeBtn = document.createElement('button');
+  writeBtn.id = 'goToWriteBtn';
+  writeBtn.className = 'btn btn-primary rounded-circle d-flex align-items-center justify-content-center';
+  
+  if (!isLoggedIn) return; // 로그인 안 되었으면 버튼 생성하지 않음
+  
+  writeBtn.style.cssText = `
+    position: fixed;
+    bottom: 150px;
+    right: 15px;
+    z-index: 1000;
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: ${isLoggedIn ? 'block' : 'none'};
+  `;
+
+  const icon = document.createElement('i');
+  icon.className = 'bi bi-pencil';
+  icon.style.fontSize = '17px';
+
+  writeBtn.appendChild(icon);
+  document.body.appendChild(writeBtn);
+
+  // 클릭 시 글쓰기 페이지 이동 예시
+  writeBtn.addEventListener('click', () => {
+    window.location.href = 'write.html'; // 필요에 따라 수정
+  });
+});
+/* 글쓰기 버튼 클릭시 이동 로직 끝 */
