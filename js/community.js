@@ -86,8 +86,24 @@ fetch('./layout/footer.html')
           item.classList.add('active'); // 현재만 active
         }
       });
-    }
-  });
+
+ //  여기서 마이페이지 클릭 시 로그인 확인 로직 추가(로그인 안되면 login.html로 먼저 이동)
+ const mypageBtn = document.getElementById('footer-mypage');
+ if (mypageBtn) {
+   mypageBtn.addEventListener('click', function (e) {
+     e.preventDefault();
+     const user = sessionStorage.getItem('user');
+     const isLoggedIn = user && user !== 'null' && user !== 'undefined' && user.trim() !== '';
+     if (isLoggedIn) {
+       window.location.href = 'mypage.html';
+     } else {
+       sessionStorage.setItem('prevPage', 'mypage.html');
+       window.location.href = 'login.html';
+     }
+   });
+ }
+}
+});
 
   // 스크롤 최상단 이동 버튼 기능
 const scrollTopBtn = document.getElementById('scrollTopBtn');
