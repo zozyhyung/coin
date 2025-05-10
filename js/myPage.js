@@ -58,3 +58,79 @@ fetch('./layout/footer.html')
     }
   });
 
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropdownBtn = document.getElementById('dropdownMenuBtn');
+    const dropdownMenu = document.querySelector('#mypageDropdown .dropdown-menu');
+    const currentLabel = document.getElementById('currentMenuLabel');
+  
+    const contentMap = {
+      '마이페이지': 'content-mypage',
+      '프로필': 'content-profile',
+      '내 스페이스': 'content-space',
+      '계정 및 보안': 'content-security'
+    };
+  
+    // 드롭다운 열고 닫기
+    dropdownBtn.addEventListener('click', () => {
+      dropdownMenu.style.display = (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') 
+        ? 'block' 
+        : 'none';
+    });
+  
+    // 항목 클릭 시 라벨 변경 + 콘텐츠 전환
+    dropdownMenu.querySelectorAll('.dropdown-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const label = item.getAttribute('data-label');
+        currentLabel.textContent = label;
+        dropdownMenu.style.display = 'none';
+  
+        // 콘텐츠 토글
+        Object.values(contentMap).forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+        const selected = contentMap[label];
+        if (selected) {
+          const el = document.getElementById(selected);
+          if (el) el.style.display = 'block';
+        }
+      });
+    });
+  
+    // 바깥 클릭 시 드롭다운 닫기
+    document.addEventListener('click', (e) => {
+      if (!document.getElementById('mypageDropdown').contains(e.target)) {
+        dropdownMenu.style.display = 'none';
+      }
+    });
+  
+    // 닉네임 렌더링
+    const userData = sessionStorage.getItem('user');
+    if (userData) {
+      try {
+        const user = JSON.parse(userData);
+        const nickname = user.nickname || '사용자';
+        document.getElementById('nickname').textContent = nickname;
+      } catch (e) {
+        console.warn('닉네임 파싱 실패:', e);
+      }
+    }
+
+    // "프로필 보기" 버튼 클릭 시 → 프로필 콘텐츠 보여주고 라벨 변경
+const profileViewBtn = document.querySelector('.profile-view-btn');
+profileViewBtn?.addEventListener('click', () => {
+  // 콘텐츠 전부 숨기기
+  Object.values(contentMap).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+
+  // 프로필 콘텐츠 보이기
+  const profileEl = document.getElementById(contentMap['프로필']);
+  if (profileEl) profileEl.style.display = 'block';
+
+  // 드롭다운 버튼 라벨도 "프로필"로 바꾸기
+  currentLabel.textContent = '프로필';
+});
+  });

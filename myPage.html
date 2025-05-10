@@ -14,6 +14,57 @@
   <div id="app">
   <div id="header-container"></div>
 
+  <div class="dropdown mx-3" id="mypageDropdown" style="margin-top: 75px;">
+    <button class="btn btn-light w-100 d-flex align-items-center justify-content-between" type="button" id="dropdownMenuBtn">
+      <div>
+        <i class="bi bi-house-door-fill me-2"></i> 
+        <span id="currentMenuLabel">마이페이지</span>
+      </div>
+      <i class="bi bi-chevron-down"></i>
+    </button>
+  
+    <ul class="dropdown-menu w-100 mt-2" style="display: none; background-color: #f1f1f1;">
+      <li><a class="dropdown-item" href="#" data-label="마이페이지"><i class="bi bi-house-door-fill me-2"></i> 마이페이지</a></li>
+      <li><a class="dropdown-item" href="#" data-label="프로필"><i class="bi bi-person-fill me-2"></i> 프로필</a></li>
+      <li><a class="dropdown-item" href="#" data-label="내 스페이스"><i class="bi bi-chat-dots-fill me-2"></i> 내 스페이스</a></li>
+      <li><a class="dropdown-item" href="#" data-label="계정 및 보안"><i class="bi bi-lock-fill me-2"></i> 계정 및 보안</a></li>
+    </ul>
+  </div>
+  <div id="content-mypage" class="content-block">
+    <div class="profile-summary d-flex align-items-center justify-content-between px-3 py-3">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-person-circle fs-2 me-3 profile-icon" style="color: #9376e0;"></i>
+        <div>
+          <div id="nickname" class="fw-semibold">닉네임</div>
+          <div class="text-muted" style="font-size: 14px;">본인을 설명해주세요</div>
+        </div>
+      </div>
+      <button class="btn profile-view-btn">프로필 보기</button>
+    </div>
+  </div>
+  
+  <!-- 프로필 콘텐츠 -->
+  <div id="content-profile" class="content-block" style="display: none;">
+    <div class="px-3 py-3">
+      <h5>프로필 설정 영역입니다.</h5>
+      <!-- 프로필 내용 추가 예정 -->
+    </div>
+  </div>
+
+  <!-- 내 스페이스 콘텐츠 -->
+<div id="content-space" class="content-block" style="display: none;">
+  <div class="px-3 py-3">
+    <h5>내 스페이스 내용입니다.</h5>
+  </div>
+</div>
+
+<!-- 계정 및 보안 콘텐츠 -->
+<div id="content-security" class="content-block" style="display: none;">
+  <div class="px-3 py-3">
+    <h5>계정 및 보안 설정입니다.</h5>
+  </div>
+</div>
+
   <!-- 푸터 영역 -->
   <div id="footer-container"></div>
 
