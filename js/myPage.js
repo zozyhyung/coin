@@ -59,6 +59,14 @@ fetch('./layout/footer.html')
   });
 
   document.addEventListener('DOMContentLoaded', () => {
+    const user = sessionStorage.getItem('user');
+     const isLoggedIn = user && user !== 'null' && user !== 'undefined' && user.trim() !== '';
+     if (isLoggedIn) {
+       console.log('마이페이지')
+     } else {
+       sessionStorage.setItem('prevPage', 'mypage.html');
+       window.location.href = 'login.html';
+     }
     const dropdownBtn = document.getElementById('dropdownMenuBtn');
     const dropdownMenu = document.querySelector('#mypageDropdown .dropdown-menu');
     const currentLabel = document.getElementById('currentMenuLabel');
