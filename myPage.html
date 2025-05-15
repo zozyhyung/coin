@@ -25,43 +25,111 @@
   
     <ul class="dropdown-menu w-100 mt-2" style="display: none; background-color: #f1f1f1;">
       <li><a class="dropdown-item" href="#" data-label="마이페이지"><i class="bi bi-house-door-fill me-2"></i> 마이페이지</a></li>
-      <li><a class="dropdown-item" href="#" data-label="프로필"><i class="bi bi-person-fill me-2"></i> 프로필</a></li>
-      <li><a class="dropdown-item" href="#" data-label="내 스페이스"><i class="bi bi-chat-dots-fill me-2"></i> 내 스페이스</a></li>
-      <li><a class="dropdown-item" href="#" data-label="계정 및 보안"><i class="bi bi-lock-fill me-2"></i> 계정 및 보안</a></li>
+      <li><a class="dropdown-item" href="#" data-label="예측 종목"><i class="bi bi-person-fill me-2"></i> 예측 종목</a></li>
+      <li><a class="dropdown-item" href="#" data-label="내가 쓴 글"><i class="bi bi-chat-dots-fill me-2"></i> 내가 쓴 글</a></li>
+      <li><a class="dropdown-item" href="#" data-label="차단 계정"><i class="bi bi-lock-fill me-2"></i> 차단 계정</a></li>
     </ul>
   </div>
+
+   <!-- 마이페이지 콘텐츠 -->
   <div id="content-mypage" class="content-block">
     <div class="profile-summary d-flex align-items-center justify-content-between px-3 py-3">
       <div class="d-flex align-items-center">
-        <i class="bi bi-person-circle fs-2 me-3 profile-icon" style="color: #9376e0;"></i>
+        <!-- 동일한 사이즈 박스 안에 아이콘 -->
+        <div class="position-relative me-3" style="width: 39px; height: 50px;">
+          <i class="bi bi-person-circle profile-icon" style="font-size: 37px; color: #9376e0;"></i>
+        </div>
         <div>
           <div id="nickname" class="fw-semibold">닉네임</div>
-          <div class="text-muted" style="font-size: 14px;">본인을 설명해주세요</div>
+          <div class="text-muted" style="font-size: 11px;">본인을 설명해주세요</div>
         </div>
       </div>
       <button class="btn profile-view-btn">프로필 보기</button>
     </div>
-  </div>
+     <!-- 분리선 -->
+    <hr style="border-top: 1px solid #adb5bd; margin-top: 1px; margin-bottom: 30px;" />
+
+    <!-- 예측 항목 시세 -->
+    <div class="container my-3" id="prediction-list">
+      <h6 class="fw-bold mb-2">예측 종목 시세</h6>
+        <ul class="list-group" id="predictionItemsUl">
+        <!-- JS로 항목 채워짐 -->
+        </ul>
+    </div>
+    <!-- 분리선 -->
+    <hr style="border-top: 13px solid #adb5bd; margin-top: 20px; margin-bottom: 20px;" />
+    <!-- 내가 쓴 글 -->
+    <div class="container my-3">
+      <h6 class="fw-bold mb-2">내가 쓴 글</h6>
+        <ul class="list-group" id="myPostsList">
+        <!-- JS로 항목 삽입 -->
+      </ul>
+    </div>
+     <!-- 분리선 -->
+     <hr style="border-top: 13px solid #adb5bd; margin-top: 20px; margin-bottom: 20px;" />
+    <!-- 차단 목록 -->
+    <div class="container my-3">
+      <h6 class="fw-bold mb-2">차단 목록</h6>
+      <div id="blockedUsersList" class="user-list mt-3">
+        <!-- JS로 삽입 -->
+      </div>
+    </div>
+    
+</div>
   
-  <!-- 프로필 콘텐츠 -->
-  <div id="content-profile" class="content-block" style="display: none;">
-    <div class="px-3 py-3">
-      <h5>프로필 설정 영역입니다.</h5>
-      <!-- 프로필 내용 추가 예정 -->
+ <!-- 예측 종목 콘텐츠 -->
+<div id="content-profile" class="content-block" style="display: none;">
+  <div class="p-3">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <!-- 프로필 이미지 -->
+        <div class="position-relative me-3" style="width: 39px; height: 50px;">
+          <i class="bi bi-person-circle profile-icon" style="font-size: 37px; color: #9376e0;"></i>
+          <i id="profileImage" class="bi bi-camera-fill position-absolute bottom-0 end-0 bg-white rounded-circle p-1 border" style="font-size: 10px; cursor: pointer;"></i>
+        </div>
+        <div>
+          <div class="fw-semibold" id="profileNickname">닉네임</div>
+        </div>
+      </div>
+      <!-- 닉네임 수정 아이콘 -->
+      <i class="bi bi-pencil-fill text-secondary" style="cursor: pointer;" id="editNicknameBtn"></i>
     </div>
   </div>
+  <!-- 분리선 -->
+  <hr style="border-top: 1px solid #adb5bd; margin-top: 1px; margin-bottom: 30px;" />
 
-  <!-- 내 스페이스 콘텐츠 -->
-<div id="content-space" class="content-block" style="display: none;">
-  <div class="px-3 py-3">
-    <h5>내 스페이스 내용입니다.</h5>
+  <!-- 예측 항목 시세 -->
+  <div class="container my-3" id="prediction-list">
+    <h6 class="fw-bold mb-2">예측 종목 시세</h6>
+      <ul class="list-group" id="predictionItemsProfileUl">
+      <!-- JS로 항목 채워짐 -->
+      </ul>
   </div>
 </div>
 
-<!-- 계정 및 보안 콘텐츠 -->
+
+  <!-- 내가 쓴 글 콘텐츠 -->
+<div id="content-space" class="content-block" style="display: none;">
+  <div class="px-3 py-3">
+    <!-- 내가 쓴 글 -->
+    <div class="container my-3">
+      <h6 class="fw-bold mb-2">내가 쓴 글</h6>
+        <ul class="list-group" id="myPostsList2">
+        <!-- JS로 항목 삽입 -->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 차단 계정 콘텐츠 -->
 <div id="content-security" class="content-block" style="display: none;">
   <div class="px-3 py-3">
-    <h5>계정 및 보안 설정입니다.</h5>
+    <div class="container my-3">
+      <h6 class="fw-bold mb-2">차단 목록</h6>
+      <div id="blockedUsersList2" class="user-list mt-3">
+        <!-- JS로 삽입 -->
+      </div>
+    </div>
   </div>
 </div>
 
