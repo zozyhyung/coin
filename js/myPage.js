@@ -92,19 +92,37 @@ fetch('./layout/footer.html')
         const label = item.getAttribute('data-label');
         currentLabel.textContent = label;
         dropdownMenu.style.display = 'none';
-  
-        // 콘텐츠 토글
-        Object.values(contentMap).forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.style.display = 'none';
-        });
-        const selected = contentMap[label];
-        if (selected) {
-          const el = document.getElementById(selected);
-          if (el) el.style.display = 'block';
+    
+        // ✅ 콘텐츠 영역 스크롤 이동
+        switch (label) {
+          case '마이페이지':
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            break;
+          case '예측 종목':
+            scrollToWithOffset('prediction-list', 80); // ← 이걸로 변경!
+            break;
+          case '내가 쓴 글':
+            scrollToWithOffset('myPostsList', 80);
+            break;
+          case '차단 계정':
+            scrollToWithOffset('blockedUsersList', 80);
+            break;
         }
       });
     });
+
+    function scrollToWithOffset(elementId, offset = 60) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      
+      const rect = el.getBoundingClientRect();
+      const absoluteY = window.scrollY + rect.top - offset; // offset 만큼 위로 여유 공간 확보
+    
+      window.scrollTo({
+        top: absoluteY,
+        behavior: 'smooth'
+      });
+    }
   
     // 바깥 클릭 시 드롭다운 닫기
     document.addEventListener('click', (e) => {
@@ -143,18 +161,25 @@ profileViewBtn?.addEventListener('click', () => {
   currentLabel.textContent = '예측 종목';
 });
 renderPredictionItems('predictionItemsUl'); // 마이페이지에서 예측 항목 시세 호출
-renderPredictionItems('predictionItemsProfileUl'); // 예측 종목 드롭다운에서 예측 항목 시세 호출
+//renderPredictionItems('predictionItemsProfileUl'); // 예측 종목 드롭다운에서 예측 항목 시세 호출
 renderMyPosts('myPostsList'); // 마이페이지에서 내가 쓴 글
-renderMyPosts('myPostsList2'); // 내가 쓴 글 드롭다운에서 내가 쓴 글
+//renderMyPosts('myPostsList2'); // 내가 쓴 글 드롭다운에서 내가 쓴 글
 renderBlockedUsers('blockedUsersList'); // 마이페이지에서 차단 목록
-renderBlockedUsers('blockedUsersList2'); // 차단 목록 드롭다운에서 차단 목록
+//renderBlockedUsers('blockedUsersList2'); // 차단 목록 드롭다운에서 차단 목록
 });
 
 // 예측 항목 시세
 function renderPredictionItems(targetId) {
   const predictionItems = [
     { name: '삼성전자', price: '82,000원', change: '+1.20%', link: 'stock_detail.html?item=삼성전자' },
-    { name: '비트코인', price: '125,000,000원', change: '+0.80%', link: 'crypto_detail.html?item=비트코인' }
+    { name: '비트코인', price: '125,000,000원', change: '+0.80%', link: 'crypto_detail.html?item=비트코인' },
+    { name: '비트코인1', price: '125,000,000원', change: '+0.80%', link: 'crypto_detail.html?item=비트코인' },
+    { name: '비트코인2', price: '125,000,000원', change: '+0.80%', link: 'crypto_detail.html?item=비트코인' },
+    { name: '비트코인3', price: '125,000,000원', change: '+0.80%', link: 'crypto_detail.html?item=비트코인' },
+    { name: '비트코인4', price: '125,000,000원', change: '+0.80%', link: 'crypto_detail.html?item=비트코인' },
+    { name: '비트코인5', price: '125,000,000원', change: '+0.80%', link: 'crypto_detail.html?item=비트코인' },
+    { name: '비트코인6', price: '125,000,000원', change: '+0.80%', link: 'crypto_detail.html?item=비트코인' },
+    { name: '비트코인7', price: '125,000,000원', change: '+0.80%', link: 'crypto_detail.html?item=비트코인' },
   ];
 
   const listContainer = document.getElementById(targetId);
@@ -191,7 +216,17 @@ function renderMyPosts(targetId) {
   const userPosts = [
     { title: '분기보고서 (2025.03)', time_ago: '6분 전', url: 'post_detail.html?id=1' },
     { title: '분기보고서 (2025.03)', time_ago: '6분 전', url: 'post_detail.html?id=2' },
-    { title: '분기보고서 (2025.03)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.04)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.05)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.06)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.07)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.08)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.08)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.09)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.10)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.10)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.10)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
+    { title: '분기보고서 (2025.10)', time_ago: '6분 전', url: 'post_detail.html?id=3' },
   ];
 
   const listContainer = document.getElementById(targetId);
@@ -227,6 +262,13 @@ function renderBlockedUsers(targetId) {
     { nickname: '김하이11', userId: 101 },
     { nickname: '김하이22', userId: 102 },
     { nickname: '김하이33', userId: 103 },
+    { nickname: '김하이44', userId: 104 },
+    { nickname: '김하이55', userId: 105 },
+    { nickname: '김하이66', userId: 106 },
+    { nickname: '김하이77', userId: 107 },
+    { nickname: '김하이88', userId: 108 },
+    { nickname: '김하이99', userId: 109 },
+    { nickname: '김하이111', userId: 110 },
   ];
 
   const container = document.getElementById(targetId);
@@ -274,3 +316,23 @@ function renderBlockedUsers(targetId) {
     container.appendChild(div);
   });
 }
+
+  // 스크롤 최상단 이동 버튼 기능
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+  // 스크롤 내릴 때 버튼 보이기
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      scrollTopBtn.style.display = 'block';
+    } else {
+      scrollTopBtn.style.display = 'none';
+    }
+  });
+  
+  // 버튼 클릭하면 맨 위로 부드럽게 이동
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
